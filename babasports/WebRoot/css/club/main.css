@@ -1,0 +1,197 @@
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #222222; PADDING-TOP: 0px; FONT-FAMILY: Arial,sans-serif,Tahoma; TEXT-ALIGN: center;BACKGROUND: #E8F4FF;
+}
+H5 {PADDING:0 0 0 0;MARGIN: 10px auto;}
+UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; LIST-STYLE-POSITION: outside; PADDING-BOTTOM: 0px; MARGIN: 0px;PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+P {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+IMG {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+
+#divAll {
+	PADDING: 0 0 0 0; BACKGROUND: #fff; MARGIN: 0px auto; WIDTH: 940px;TEXT-ALIGN: center; 
+}
+#divMiddle {
+	PADDING: 0 0 0 0; MARGIN: 0px auto; WIDTH: 940px; TEXT-ALIGN: center ; BACKGROUND: #fff;
+}
+#divTop {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(/images/club/header_bg.jpg) repeat-y center 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px auto; WIDTH: 940px; PADDING-TOP: 0px; HEIGHT: 115px; TEXT-ALIGN: left
+}
+#divLeft {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 20px 10px 10px 0; WIDTH: 280px; PADDING-TOP: 0px; TEXT-ALIGN: left; BORDER: #D2D2D2 1px solid; 
+}
+#divMain {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 0px; FLOAT: right; PADDING-BOTTOM: 0px; MARGIN: 20px auto; WIDTH: 610px; PADDING-TOP: 0px; TEXT-ALIGN: left;
+}
+#BlogTitle {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 30px; PADDING-BOTTOM: 0px; MARGIN: 28px 0px 0px 120px; PADDING-TOP: 0px; FONT-FAMILY: Comic Sans MS, Lucida Grande, Lucida Sans Unicode, Lucida Console, Tahoma, Verdana, Lucida, 宋体, sans-serif;
+}
+A {
+	TEXT-DECORATION: none;FONT-FAMILY: 宋体, sans-serif;
+}
+#BlogTitle A:link {
+	COLOR: #78a420
+}
+#BlogTitle A:visited {
+	COLOR: #78a420; TEXT-DECORATION: none
+}
+#BlogTitle A:hover {
+	COLOR: #e2b80e
+}
+#BlogTitle A:active {
+	COLOR: #222222
+}
+#site {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 16px; PADDING-BOTTOM: 0px; MARGIN: 5px 0px 0px 120px; PADDING-TOP: 0px; FONT-FAMILY: 宋体;color:#669933;BACKGROUND: #92FCDF;width:300px
+}
+#divNavBar {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(/images/club/corner_bottom_right.gif) #fec42d no-repeat right bottom; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 940px; PADDING-TOP: 0px; HEIGHT: 30px; TEXT-ALIGN: left
+}
+#divNavBar H3 {
+	DISPLAY: none
+}
+#divNavBar UL {
+	BORDER-RIGHT: white 1px solid; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BORDER-LEFT-COLOR: white; BACKGROUND: #c5ed6f; FLOAT: left; BORDER-BOTTOM-COLOR: white; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 930px; BORDER-TOP-COLOR: white; PADDING-TOP: 0px; HEIGHT: 30px; TEXT-ALIGN: left
+}
+#divNavBar LI {
+	BORDER-RIGHT: #fff 1px solid; BORDER-LEFT-COLOR: #fff; FLOAT: left; BORDER-BOTTOM-COLOR: #fff; WIDTH: 80px; BORDER-TOP-COLOR: #fff; LINE-HEIGHT: 30px; WHITE-SPACE: nowrap
+}
+#divNavBar A {
+	DISPLAY: block; FONT-SIZE: 1em; TEXT-TRANSFORM: uppercase; LETTER-SPACING: 1px; HEIGHT: 30px; TEXT-ALIGN: center
+}
+#divNavBar A:link {
+	COLOR: #222222
+}
+#divNavBar A:visited {
+	COLOR: #222222
+}
+#divNavBar A:hover {
+	BACKGROUND: #d2fa7d; COLOR: #222222
+}
+#divNavBar {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(images/club/corner_bottom_right.gif) #fec42d no-repeat right bottom; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 940px; PADDING-TOP: 0px; HEIGHT: 30px; TEXT-ALIGN: left
+}
+#divNavBar H3 {
+	DISPLAY: none
+}
+#divNavBar UL {
+	BORDER-RIGHT: white 1px solid; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BORDER-LEFT-COLOR: white; BACKGROUND: #c5ed6f; FLOAT: left; BORDER-BOTTOM-COLOR: white; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 930px; BORDER-TOP-COLOR: white; PADDING-TOP: 0px; HEIGHT: 30px; TEXT-ALIGN: left
+}
+#divNavBar LI {
+	BORDER-RIGHT: #fff 1px solid; BORDER-LEFT-COLOR: #fff; FLOAT: left; BORDER-BOTTOM-COLOR: #fff; WIDTH: 80px; BORDER-TOP-COLOR: #fff; LINE-HEIGHT: 30px; WHITE-SPACE: nowrap
+}
+#divNavBar A {
+	DISPLAY: block; FONT-SIZE: 1em; TEXT-TRANSFORM: uppercase; LETTER-SPACING: 1px; HEIGHT: 30px; TEXT-ALIGN: center
+}
+#divNavBar A:link {
+	COLOR: #222222
+}
+#divNavBar A:visited {
+	COLOR: #222222
+}
+#divNavBar A:hover {
+	BACKGROUND: #d2fa7d; COLOR: #222222
+}
+#company {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 14px; PADDING-BOTTOM: 10px; MARGIN: 0px auto; PADDING-TOP: 20px; FONT-FAMILY: 宋体;clear : both;
+}
+
+#company H2 {
+	FONT-SIZE: 14px; PADDING: 0px 0px 0px 0px; MARGIN: 0px 0px 0px 0px; COLOR: #FF6600;
+}
+#companyintroduct{
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: normal; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 0px auto; PADDING-TOP: 0px; FONT-FAMILY: 宋体;line-height: 20px;COLOR:#4F4F4F
+}
+#dianpeng{
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: normal; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 0px auto; PADDING-TOP: 0px; FONT-FAMILY: 宋体;line-height: 20px;COLOR:#4F4F4F
+}
+#divLeft #leftchanncel{
+	PADDING: 0 0 0 0; MARGIN: 0px auto;
+}
+#divLeft #leftchanncel UL{
+	PADDING: 0px 0 0 0; MARGIN: 0px 0 0 0;
+}
+#divLeft #leftchanncel UL LI{PADDING: 0px 0 5px 0;COLOR: green}
+#divLeft #leftchanncel UL LI A {
+	COLOR: #336666; FONT-FAMILY: 宋体;
+}
+#divLeft #leftchanncel UL LI A:hover {
+	COLOR: #e2b80e; FONT-FAMILY: 宋体;
+}
+#divLeft #leftchanncel #leftchanncel_t{
+	clear : both;PADDING: 0px 0px 5px 0px; MARGIN: 10px 0 5px 0;FONT-WEIGHT: bold; FONT-SIZE: 14px;BORDER-BOTTOM: #C0C0C0 1px solid; height:20px;
+}
+#divLeft #leftchanncel #leftchanncel_t #title{
+	PADDING: 0 0 0 0; MARGIN: 0px auto;FLOAT:left ;
+}
+#divLeft #leftchanncel #leftchanncel_t .more{FLOAT:right;width:60px;FONT-SIZE: 12px;PADDING: 5px 0 0 0; MARGIN: 0px auto;FONT-WEIGHT: normal;}
+#divLeft #leftchanncel #leftchanncel_t a{COLOR: red;}
+#divLeft #leftchanncel #clubimage {overflow:hidden;height:430px;color:#ffffff}
+#divLeft #leftchanncel #clubimage_list{
+	height:430px;TEXT-ALIGN: center; COLOR: #000000;
+}
+#divLeft #leftchanncel #clubimage_list li{
+	TEXT-ALIGN: center; FONT-FAMILY: 宋体;
+}
+#divLeft #leftchanncel #clubimage_t{TEXT-ALIGN: center;}
+.n_right_content {
+	BACKGROUND-POSITION: 50% bottom; BACKGROUND-IMAGE: url(/images/club/n_dian.gif); LINE-HEIGHT: 24px; BACKGROUND-REPEAT: repeat; TEXT-ALIGN: left;MARGIN: 0px 0px 0px 0px; PADDING: 0 0 0 0;
+}
+.project_content {
+	BACKGROUND-POSITION: 50% bottom; BACKGROUND-IMAGE: url(/images/club/n_dian.gif); LINE-HEIGHT: 24px; BACKGROUND-REPEAT: repeat; TEXT-ALIGN: left;MARGIN: 0px 0px 0px 0px; PADDING: 0 0 0 0;
+}
+.project_content a{COLOR: #0066FF;}
+.n_right_content SPAN.nt {
+	FONT-WEIGHT: bold;
+}
+.n_right_content SPAN.nc {
+	COLOR: #333333; LINE-HEIGHT: 24px
+}
+#companylogo{ FLOAT: right;width:180px;MARGIN: 0px 10px 0px 0px; PADDING: 0 0 0 0; TEXT-ALIGN: center;}
+#linkway{FLOAT:left ;MARGIN: 0px 0px 0px 0px; PADDING: 0 0 0 0;LINE-HEIGHT: 24px;width:385px}
+.clear{clear : both;MARGIN: 0px 0px 0px 0; PADDING: 0 0 0 0;HEIGHT: 24px}
+.orange{COLOR: #FF6600;}
+.red{COLOR:red;}
+
+#clubcontent {
+	clear : both;PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; MARGIN: 0px auto; PADDING-TOP: 0px; TEXT-ALIGN: left;FONT-FAMILY: 宋体;font-size:14px;LINE-HEIGHT: 24px;height:300px;
+}
+#clublogo {
+	MARGIN: 10px 0 10px 0;TEXT-ALIGN: center;
+}
+#project_t {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 14px; PADDING-BOTTOM: 10px; MARGIN: 0px auto; PADDING-TOP: 0px; FONT-FAMILY: 宋体;clear : both;
+}
+#project_t H2 {
+	FONT-SIZE: 14px; PADDING: 0px 0px 0px 0px; MARGIN: 0px 0px 0px 0px; COLOR: #FF6600;
+}
+#projectlist UL{
+	PADDING: 5px 0 0 0; MARGIN: 0px 0 0 0;
+}
+#projectlist UL LI{PADDING: 0px 0 5px 0;MARGIN: 8px 0 0 0;font-size:14px}
+#projectlist UL LI A {
+	COLOR: #336666; FONT-FAMILY: 宋体;
+}
+#projectlist UL LI A:hover {
+	COLOR: #FF9900
+}
+.repay{COLOR: #0033FF; BORDER: #D2D2D2 1px solid; MARGIN: 10px 10px 0px 10px;PADDING: 5px 0 5px 5px;}
+
+#imagelist{width : 600px; BORDER: #D2D2D2 1px solid; MARGIN: 20px 0 0 0;overflow:auto}
+#imagelist UL{
+	PADDING: 5px 0 0 0; MARGIN: 0px 0 0 0;
+}
+#imagelist UL LI{FLOAT:left ;PADDING: 0 0 0 0;MARGIN: 8px 10px 0 5px;font-size:14px;width:132px;TEXT-ALIGN: center;cursor:pointer;}
+#imagelist UL LI A {
+	COLOR: #336666; FONT-FAMILY: 宋体;
+}
+#imagelist UL LI A:hover {
+	COLOR: #FF9900
+}

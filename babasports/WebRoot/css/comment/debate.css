@@ -1,0 +1,34 @@
+.d_f12_FF00 {
+	FONT-SIZE: 12px; COLOR: #ff0000
+}
+.d_f12_FF00 A:link {
+	FONT-SIZE: 12px; COLOR: #ff0000; TEXT-DECORATION: none
+}
+.d_f12_FF00 A:visited {
+	FONT-SIZE: 12px; COLOR: #ff0000; TEXT-DECORATION: none
+}
+.d_f12_FF00 A:hover {
+	FONT-SIZE: 12px; COLOR: #ff0000; TEXT-DECORATION: underline
+}
+.d_f12_004B {
+	FONT-SIZE: 12px; COLOR: #004b98
+}
+.d_f12_004B A:link {
+	FONT-SIZE: 12px; COLOR: #004b98; TEXT-DECORATION: none
+}
+.d_f12_004B A:visited {
+	FONT-SIZE: 12px; COLOR: #004b98; TEXT-DECORATION: none
+}
+.d_f12_004B A:hover {
+	FONT-SIZE: 12px; COLOR: #004b98; TEXT-DECORATION: underline
+}
+.f14 {
+	FONT-SIZE: 14px
+}
+.d_pic37 {
+	BACKGROUND: url(/images/comment/pic37.gif) #c5dff6 repeat-x 50% top
+}
+.message3{text-align:left;height:55px; padding:5px 10px 0 5px; background:#f2f2f2;margin:15px 15px 10px 35px;word-break:break-all;word-wrap:break-word;}
+.message3 h3{ font-size:12px; padding-top:2px; padding-left:8px;margin:0 0 10px 0px;}
+.message3 em{color:#ff7100;font-style:normal; font-weight:bold;}
+.message3 p{margin:0 0 0px 10px;padding:0px 0px 0 0px;line-height: 20px;}

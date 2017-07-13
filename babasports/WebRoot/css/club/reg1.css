@@ -1,0 +1,88 @@
+.main {
+	WIDTH: 550px
+}
+.side {
+	WIDTH: 240px
+}
+.container {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px
+}
+TABLE {
+	
+}
+TABLE SPAN {
+	COLOR: #ff0000
+}
+TH {
+	FONT-WEIGHT: normal; COLOR: #000; TEXT-ALIGN: left
+}
+.inputloading {
+	BACKGROUND: url(http://www.tudou.com/static/lexrus/styles_images/global/loading_ico.gif) no-repeat right 0px
+}
+.clear_input {
+	WIDTH: 120px
+}
+.youcan LI {
+	LIST-STYLE-IMAGE: url(http://www.tudou.com/static/lexrus/styles_images/global/ok.gif); MARGIN: 12px 0px 12px 30px
+}
+.youcan DIV {
+	BORDER-TOP: #ccc 1px dotted; PADDING-TOP: 10px; TEXT-ALIGN: right
+}
+.youcan A {
+	COLOR: #f60
+}
+.pleaselogin A {
+	COLOR: #f60
+}
+.pleaselogin {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 5px; LINE-HEIGHT: 200%; PADDING-TOP: 5px
+}
+.agree {
+	PADDING-RIGHT: 0px; MARGIN-TOP: 5px; PADDING-LEFT: 0px; PADDING-BOTTOM: 15px; PADDING-TOP: 15px
+}
+.needreg {
+	PADDING-RIGHT: 17px; PADDING-LEFT: 17px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; BORDER-BOTTOM: #ccc 1px dotted
+}
+.needreg LI {
+	LIST-STYLE-IMAGE: url(http://www.tudou.com/static/lexrus/styles_images/global/ok.gif); MARGIN: 12px 0px 12px 30px
+}
+.guild {
+	PADDING-RIGHT: 8px; PADDING-LEFT: 8px; PADDING-BOTTOM: 4px; MARGIN: 5px 0px; PADDING-TOP: 4px; BORDER-BOTTOM: #efefef 1px solid
+}
+.guild P {
+	FONT-SIZE: 14px; MARGIN: 5px 0px; COLOR: #000
+}
+.guild SPAN {
+	COLOR: #666
+}
+#regForm TD {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; PADDING-BOTTOM: 8px; VERTICAL-ALIGN: top; LINE-HEIGHT: 160%; PADDING-TOP: 8px
+}
+#regForm TH {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; PADDING-BOTTOM: 8px; VERTICAL-ALIGN: top; LINE-HEIGHT: 160%; PADDING-TOP: 8px
+}
+#regForm .input {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px
+}
+
+.service_box {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 30px; PADDING-BOTTOM: 6px; PADDING-TOP: 6px
+}
+.service_box_list {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 30px; PADDING-BOTTOM: 6px; PADDING-TOP: 6px
+}
+.service_box_program {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 30px; PADDING-BOTTOM: 6px; PADDING-TOP: 6px
+}
+.service_box {
+	BORDER-RIGHT: #ddd 1px solid; BORDER-TOP: #ddd 1px solid; BACKGROUND: url(http://image.tudou.com/vivian/images/service/help_ico.gif) #fafafa no-repeat left top; MARGIN: 0px auto; BORDER-LEFT: #ddd 1px solid; WIDTH: 120px; BORDER-BOTTOM: #ddd 1px solid
+}
+.service_box_list {
+	MARGIN: 5px 0px 0px; WIDTH: 100px
+}
+.service_box_list {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BACKGROUND: url(http://image.tudou.com/vivian/images/service/help_ico.gif) no-repeat left top; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+.service_box_program {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BACKGROUND: url(http://image.tudou.com/vivian/images/service/help_ico.gif) no-repeat left top; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}

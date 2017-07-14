@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 购物管理-->
+		<package name="shopping" namespace="/shopping" extends="custom-default">
+		<action name="cart" class="cartAction"><result >/WEB-INF/page/shopping/cart.jsp</result></action>
+		<action name="finish" class="shoppingFinishAction">
+			<result>
+				<param name="location">/WEB-INF/page/shopping/finish_${result}.jsp</param>
+				<param name="orderid">${orderid}</param>
+				<param name="payablefee">${payablefee}</param>
+				<param name="paymentway">${result}</param>
+			</result>
+		</action>
+	</package>
+	
+	
+	<package name="shoppingmanager" namespace="/shopping/cart" extends="custom-default">
+		<action name="manage_*" class="cartManageAction" method="{1}">
+			<result type="redirectAction" >
+				<param name="namespace">/shopping</param>
+				<param name="actionName">cart</param>
+				<param name="directUrl">${directUrl}</param>
+			</result>
+			<!-- 用户单价购物车结算时跳转的页面 -->
+			<result type="redirectAction" name="settleAccounts">
+				<param name="namespace">/customer/shopping</param>
+				<param name="actionName">deliver</param>
+			</result>
+		</action>
+	
+	</package>
+	
+	
+	<package name="customermanager" namespace="/customer/shopping" extends="custom-default">
+		<action name="deliver" class="deliverInfoAction" ><result>/WEB-INF/page/shopping/deliverInfo.jsp</result>
+		</action>
+		<action name="confirm" class="orderConfirmAction"><result>/WEB-INF/page/shopping/confirm.jsp</result></action>
+		<action name="manage_*" class="shoppingManageAction" method="{1}">
+			<result type="redirectAction" >
+				<param name="namespace">/customer/shopping</param>
+				<param name="actionName">payment</param>
+			</result>
+			<!-- 转到订单信息确认视图 -->
+			<result type="redirectAction" name="confirm" >
+				<param name="namespace">/customer/shopping</param>
+				<param name="actionName">confirm</param>
+			</result>
+		</action>
+		<!-- 送货方式与支付方式选择界面-->
+		<action name="payment" class="paymentWayAction" >
+			<result>/WEB-INF/page/shopping/paymentway.jsp
+			</result>
+		</action>
+	
+	</package>
+</struts>    

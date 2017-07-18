@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- struts2测试模式 -->
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.objectFactory" value="spring"/>
+	<package name="basicstruts2" extends="struts-default">
+		<!-- 需要进行权限控制的页面访问 -->
+		<action name="page_*_*">
+			<result name="success" type="dispatcher">/WEB-INF/pages/{1}/{2}.jsp</result>
+		</action>
+	</package>
+</struts>

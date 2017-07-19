@@ -65,4 +65,16 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		return query.list();
 	}
 
+	@Override
+	public void executeUpdate(String queryName, Object... params) {
+		Session session = this.getSession();
+		Query query=session.getNamedQuery(queryName);//获得命名查询的query对象
+		for(int i=0;i<params.length;i++){
+			query.setParameter(i, params[i]);
+		}
+		query.executeUpdate();
+	}
+	
+	
+
 }

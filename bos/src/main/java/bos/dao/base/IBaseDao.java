@@ -10,4 +10,10 @@ public interface IBaseDao<T> {
 	public void findById(Serializable id);
 	public List<T> findAll();
 	public List<T> find(String hql, Object... params);
+	/**
+	 * 提供通用更新方法
+	 * @param queryName 查询语句名字
+	 * @param params 参数
+	 */
+	public void executeUpdate(String queryName,Object... params);
 }

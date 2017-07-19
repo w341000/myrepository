@@ -1,13 +1,17 @@
 package bos.web.action;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import bos.domain.User;
 import bos.service.IUserService;
+import bos.utils.MD5Utils;
 import bos.web.action.base.BaseAction;
 @Controller @Scope("prototype")
 public class UserAction extends BaseAction<User> {
@@ -18,6 +22,7 @@ public class UserAction extends BaseAction<User> {
 	public void setCheckcode(String checkcode) {
 		this.checkcode = checkcode;
 	}
+	//登录操作
 	public String login(){
 		//生成的验证码
 		String key=(String) session.get("key");
@@ -39,5 +44,26 @@ public class UserAction extends BaseAction<User> {
 			this.addActionError(getText("validateCodeError"));
 			return "login";
 		}
+	}
+	//退出登录
+	public String logout(){
+		session.put("loginUser", null);
+		return "login";
+	}
+	//修改密码
+	public String editPassword() throws IOException{
+		User user=(User) session.get("loginUser");
+		String password =model.getPassword();
+		password=MD5Utils.md5(password);
+		String flag="1";
+		try {
+			userService.editPassword(password,user.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+			flag="0";
+		}
+		ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
+		ServletActionContext.getResponse().getWriter().write(flag);
+		return NONE;
 	}
 }

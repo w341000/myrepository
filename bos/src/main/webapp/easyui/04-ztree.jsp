@@ -51,16 +51,16 @@
 						//当页面加载完成后，动态创建ztree菜单
 						var setting = {};//设置ztree相关的属性
 						//构造json数据
-						var zNodes = [ {
+						var zNodes = [{
 							name : '系统管理'
 						},//每个json对象对应一个节点数据
 						{
 							name : '用户管理',
-							children : [ {
+							children : [{
 								name : '用户添加'
 							}, {
 								name : '用户修改'
-							} ]
+							}]
 						},//每个json对象对应一个节点数据
 						{
 							name : '权限管理'
@@ -86,7 +86,7 @@
 							}
 						};//设置ztree相关的属性
 						//构造json数据
-						var zNodes2 = [ {
+						var zNodes2 = [{
 							id : '1',
 							pId : '0',
 							name : '系统管理'
@@ -118,48 +118,52 @@
 				</script>
 			</div>
 			<div title="面板四">
-<ul id="ztree3" class="ztree"></ul>
-<script type="text/javascript">
-	$(function(){
-		var setting3 = {
-				data : {
-					simpleData : {
-						enable : true
-					//启用简单json数据描述节点数据 
-					}
-				},
-				callback: {//绑定事件 
-					onClick: function(a,b,treeNode){
-						var page = treeNode.page;
-						if(page != undefined){//需要打开选项卡
-							//判断当前选项卡是否已经打开
-							var e = $("#tt").tabs("exists",treeNode.name);
-							if(e){
-								//已经打开
-								$("#tt").tabs("select",treeNode.name);
-							}else{
-								$("#tt")
-								.tabs(
-										"add",
-										{
-											title : treeNode.name,
-											content : '<iframe frameborder="0" width="100%" height="100%" src="'+page+'"></iframe>',
-											closable : true,
-											iconCls : 'icon-edit'
-										});
+				<ul id="ztree3" class="ztree"></ul>
+				<script type="text/javascript">
+					$(function() {
+						var setting3 = {
+							data : {
+								simpleData : {
+									enable : true
+								//启用简单json数据描述节点数据 
+								}
+							},
+							callback : {//绑定事件 
+								onClick : function(a, b, treeNode) {
+									var page = treeNode.page;
+									if (page != undefined) {//需要打开选项卡
+										//判断当前选项卡是否已经打开
+										var e = $("#tt").tabs("exists",
+												treeNode.name);
+										if (e) {
+											//已经打开
+											$("#tt").tabs("select",
+													treeNode.name);
+										} else {
+											$("#tt")
+													.tabs(
+															"add",
+															{
+																title : treeNode.name,
+																content : '<iframe frameborder="0" width="100%" height="100%" src="'
+																		+ page
+																		+ '"></iframe>',
+																closable : true,
+																iconCls : 'icon-edit'
+															});
+										}
+									}
+								}
 							}
-						}
-					}
-				}
-			};//设置ztree相关的属性
-	    //发送ajax请求获取json数据构造ztree
-	    var url = "${pageContext.request.contextPath}/json/menu.json";
-		$.post(url,{},function(data){
-			//创建ztree
-			$.fn.zTree.init($("#ztree3"), setting3, data);
-		},'json');
-	});
-</script>
+						};//设置ztree相关的属性
+						//发送ajax请求获取json数据构造ztree
+						var url = "${pageContext.request.contextPath}/json/menu.json";
+						$.post(url, {}, function(data) {
+							//创建ztree
+							$.fn.zTree.init($("#ztree3"), setting3, data);
+						}, 'json');
+					});
+				</script>
 			</div>
 		</div>
 	</div>

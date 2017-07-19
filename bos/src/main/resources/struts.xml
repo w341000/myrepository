@@ -5,11 +5,18 @@
 <struts>
 	<!-- struts2测试模式 -->
 	<constant name="struts.devMode" value="true" />
+	<!-- 国际化提示信息 -->
+	<constant name="struts.custom.i18n.resources" value="message"></constant>
 	<constant name="struts.objectFactory" value="spring"/>
 	<package name="basicstruts2" extends="struts-default">
 		<!-- 需要进行权限控制的页面访问 -->
 		<action name="page_*_*">
 			<result name="success" type="dispatcher">/WEB-INF/pages/{1}/{2}.jsp</result>
+		</action>
+		
+		<action name="userAction_*" class="userAction" method="{1}">
+			<result name="login">/login.jsp</result>
+			<result name="home">/index.jsp</result>
 		</action>
 	</package>
 </struts>

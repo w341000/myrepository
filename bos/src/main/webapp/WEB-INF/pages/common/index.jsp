@@ -27,6 +27,9 @@
 <script
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
+<script
+	src="${pageContext.request.contextPath }/js/outOfBounds.js"
+	type="text/javascript"></script>
 <script type="text/javascript">
 	// 初始化ztree菜单
 	$(function() {
@@ -45,10 +48,10 @@
 		$.ajax({
 			url : '${pageContext.request.contextPath}/json/menu.json',
 			type : 'POST',
-			dataType : 'text',
+			dataType : 'json',
 			success : function(data) {
-				var zNodes = eval("(" + data + ")");
-				$.fn.zTree.init($("#treeMenu"), setting, zNodes);
+				//var zNodes = eval("(" + data + ")");
+				$.fn.zTree.init($("#treeMenu"), setting, data);
 			},
 			error : function(msg) {
 				alert('菜单加载异常!');

@@ -3,11 +3,13 @@ package bos.dao.base;
 import java.io.Serializable;
 import java.util.List;
 
+import bos.utils.PageBean;
+
 public interface IBaseDao<T> {
 	public void save(T entity);
 	public void delete(T entity);
 	public void update(T entity);
-	public void findById(Serializable id);
+	public T findById(Serializable id);
 	public List<T> findAll();
 	public List<T> find(String hql, Object... params);
 	/**
@@ -16,4 +18,11 @@ public interface IBaseDao<T> {
 	 * @param params 参数
 	 */
 	public void executeUpdate(String queryName,Object... params);
+	
+
+	/**
+	 * 通用分页查询方法
+	 * @param pageBean 
+	 */
+	public void pageQuery(PageBean pageBean);
 }

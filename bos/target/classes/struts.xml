@@ -5,7 +5,7 @@
 <struts>
 	<!-- struts2测试模式 -->
 	<constant name="struts.devMode" value="false" />
-	<!-- 国际化提示信息 -->
+	<!-- 国际化提示信息,在message.properties文件中,可以省去后缀 -->
 	<constant name="struts.custom.i18n.resources" value="message"></constant>
 	<constant name="struts.objectFactory" value="spring"/>
 	<package name="basicstruts2" extends="struts-default">
@@ -34,6 +34,10 @@
 		<action name="userAction_*" class="userAction" method="{1}">
 			<result name="home" type="redirect">/index.jsp</result>
 			<result name="login">/login.jsp</result>
+		</action>
+		<!-- 取派员管理 -->
+		<action name="staffAction_*" class="staffAction" method="{1}">
+			<result name="list">/WEB-INF/pages/base/staff.jsp</result>
 		</action>
 	</package>
 </struts>

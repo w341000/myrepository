@@ -1,8 +1,11 @@
 package bos.web.action.base;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.lang.reflect.ParameterizedType;
 import java.util.Map;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -37,7 +40,22 @@ SessionAware, ApplicationAware, ModelDriven<T> {
 				throw new RuntimeException(e);
 			}
 		}
+	protected void setResponseContentType(String type){
+		ServletActionContext.getResponse().setContentType(type);
+	}
 
+	protected Writer getWriter(){
+		try {
+			return ServletActionContext.getResponse().getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	protected void writeJson(String json) throws IOException{
+		this.setResponseContentType("application/json;charset=UTF-8");
+		this.getWriter().write(json);
+	}
 	@Override
 	public T getModel() {
 		return model;

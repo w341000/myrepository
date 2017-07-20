@@ -9,8 +9,12 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.transform.ResultTransformer;
 
 import bos.dao.base.IBaseDao;
+import bos.utils.PageBean;
 
 public class BaseDaoImpl<T> implements IBaseDao<T> {
 	
@@ -46,8 +50,8 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 	}
 
 	@Override
-	public void findById(Serializable id) {
-		getSession().get(clazz, id);
+	public T findById(Serializable id) {
+		return (T) getSession().get(clazz, id);
 	}
 
 	@Override
@@ -73,6 +77,27 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 			query.setParameter(i, params[i]);
 		}
 		query.executeUpdate();
+	}
+
+	@Override
+	public void pageQuery(PageBean pageBean) {
+		int currentPage = pageBean.getCurrentPage();
+		int pageSize = pageBean.getPageSize();
+		DetachedCriteria detachedCriteria = pageBean.getDetachedCriteria();
+		//总数据库
+		//改变hibernate发出的sql  --select count(*) fomr xxx
+		detachedCriteria.setProjection(Projections.rowCount());
+		//获取到总数据量
+		int total=((Long)detachedCriteria.getExecutableCriteria(getSession()).uniqueResult()).intValue();
+		pageBean.setTotal(total);
+		detachedCriteria.setProjection(null);	//修改回sql的形式
+		//重置表和类的映射关系
+		detachedCriteria.setResultTransformer(DetachedCriteria.ROOT_ENTITY);
+		//当前页展示的数据
+		int firstResult=(currentPage-1)*pageSize;
+		int maxResults=pageSize;
+		List list = detachedCriteria.getExecutableCriteria(getSession()).setFirstResult(firstResult).setMaxResults(maxResults).list();
+		pageBean.setRows(list);
 	}
 	
 	

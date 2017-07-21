@@ -23,6 +23,8 @@
 	src="${pageContext.request.contextPath }/js/easyui/ext/jquery.portal.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/easyui/ext/jquery.cookie.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/js/jquery.ocupload-1.1.2.js"></script>
 <script
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
@@ -132,6 +134,21 @@
 	function doDblClickRow(){
 		alert("双击表格数据...");
 	}
+	//导入数据事件
+	$(function(){
+		$("#button-import").upload({
+			action:"${pageContext.request.contextPath }/regionAction_importXls.action",
+			name:"myFile",
+			onComplete:function(data){
+				if(data=='1'){
+					$.messager.alert("提示信息","区域数据导入成功!","info");
+				}else{
+					$.messager.alert("提示信息","区域数据导入失败,请检查文件格式是否正确!","warning");
+				}
+			}
+		});
+	
+	});
 </script>	
 </head>
 <body class="easyui-layout" style="visibility:hidden;">

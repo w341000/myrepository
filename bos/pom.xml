@@ -15,7 +15,6 @@
 	</properties>
   
   <dependencies>
-  
   		<!-- junit -->
         <dependency>
             <groupId>junit</groupId>
@@ -36,6 +35,14 @@
 		    <version>2.4</version>
 		    <classifier>jdk15</classifier>
 		</dependency>
+		
+		<!-- poi进行xls和doc解析 -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>3.9</version>
+		</dependency>
+		
   
   		<!-- spring -->
         <dependency>

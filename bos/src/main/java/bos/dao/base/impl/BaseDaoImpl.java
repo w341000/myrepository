@@ -99,6 +99,11 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		List list = detachedCriteria.getExecutableCriteria(getSession()).setFirstResult(firstResult).setMaxResults(maxResults).list();
 		pageBean.setRows(list);
 	}
+
+	@Override
+	public void saveOrUpdate(T entity) {
+		this.getSession().saveOrUpdate(entity);
+	}
 	
 	
 

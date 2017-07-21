@@ -3,6 +3,7 @@ package bos.dao.base;
 import java.io.Serializable;
 import java.util.List;
 
+import bos.domain.Region;
 import bos.utils.PageBean;
 
 public interface IBaseDao<T> {
@@ -18,6 +19,8 @@ public interface IBaseDao<T> {
 	 * @param params 参数
 	 */
 	public void executeUpdate(String queryName,Object... params);
+	
+	public void saveOrUpdate(T entity);
 	
 
 	/**

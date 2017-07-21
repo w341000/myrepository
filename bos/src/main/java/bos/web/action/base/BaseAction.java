@@ -56,6 +56,10 @@ SessionAware, ApplicationAware, ModelDriven<T> {
 		this.setResponseContentType("application/json;charset=UTF-8");
 		this.getWriter().write(json);
 	}
+	protected void writeHtml(String html) throws IOException{
+		this.setResponseContentType("text/html;charset=UTF-8");
+		this.getWriter().write(html);
+	}
 	@Override
 	public T getModel() {
 		return model;

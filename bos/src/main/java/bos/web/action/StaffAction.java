@@ -17,8 +17,7 @@ import bos.utils.PageBean;
 import bos.web.action.base.BaseAction;
 @Controller@Scope("prototype")
 public class StaffAction extends BaseAction<Staff> {
-	private int page;
-	private int rows;
+
 	private String ids;
 	@Resource
 	private IStaffService staffService;
@@ -26,12 +25,6 @@ public class StaffAction extends BaseAction<Staff> {
 	
 	public void setIds(String ids) {
 		this.ids = ids;
-	}
-	public void setPage(int page) {
-		this.page = page;
-	}
-	public void setRows(int rows) {
-		this.rows = rows;
 	}
 	
 	//取派员添加
@@ -43,20 +36,11 @@ public class StaffAction extends BaseAction<Staff> {
 	
 	//分页查询
 	public String pageQuery() throws IOException{
-		PageBean pageBean=new PageBean();
-		pageBean.setCurrentPage(page);
-		pageBean.setPageSize(rows);
 		//设置离线查询
-		DetachedCriteria detachedCriteria=DetachedCriteria.forClass(Staff.class);
-		pageBean.setDetachedCriteria(detachedCriteria);
-		
 		staffService.pageQuery(pageBean);
 		//过滤需要传输的json内容
-		JsonConfig jsonConfig=new JsonConfig();
-		jsonConfig.setExcludes(new String[]{"pageSize","currentPage","detachedCriteria","decidedzones"});
-		JSONObject jsonObject = JSONObject.fromObject(pageBean, jsonConfig);
-		String json=jsonObject.toString();
-		this.writeJson(json);
+		String[]  excludes=new String[]{"pageSize","currentPage","detachedCriteria","decidedzones"};
+		this.WritePageBean2Json(excludes);
 		return NONE;
 	}
 	

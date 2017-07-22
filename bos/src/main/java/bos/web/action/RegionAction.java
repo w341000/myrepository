@@ -26,8 +26,11 @@ public class RegionAction extends BaseAction<Region> {
 	private File myFile;
 	@Resource
 	private IRegionService regionService;
-	
-	
+	//模糊查询条件
+	private String q;
+	public void setQ(String q) {
+		this.q = q;
+	}
 	public void setMyFile(File myFile) {
 		this.myFile = myFile;
 	}
@@ -81,6 +84,9 @@ public class RegionAction extends BaseAction<Region> {
 		return NONE;
 	}
 	
+	/**
+	 * 分页查询
+	 */
 	public String pageQuery() throws IOException{
 		
 		regionService.pageQuery(pageBean);
@@ -89,4 +95,25 @@ public class RegionAction extends BaseAction<Region> {
 		this.WritePageBean2Json(excludes);
 		return NONE;
 	}
+	/**
+	 * 查询所有区域数据,返回json
+	 * @throws IOException 
+	 */
+	
+	public String listajax() throws IOException{
+		List<Region> list=null;
+		if(StringUtils.isNotBlank(q)){
+			list=regionService.findByQ(q);
+		}else{
+			list=regionService.findAll();
+		}
+		String[] excludes=new String[]{"subareas","postcode","shortcode","citycode","province",
+				"city","district"};
+		this.WriteList2Json(list,excludes);
+		return NONE;
+	}
+
+
+	
+	
 }

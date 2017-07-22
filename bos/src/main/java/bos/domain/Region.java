@@ -19,6 +19,10 @@ public class Region implements java.io.Serializable {
 	private String shortcode;
 	private String citycode;
 	private Set subareas = new HashSet(0);
+	//提供name属性(此属性不需要被持久化)
+	public String getName(){
+		return province+city+district;
+	}
 
 	// Constructors
 

@@ -3,8 +3,10 @@ package bos.web.action.base;
 import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 import java.util.Map;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
@@ -14,6 +16,7 @@ import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.criterion.DetachedCriteria;
 
+import bos.domain.Region;
 import bos.domain.Staff;
 import bos.utils.PageBean;
 
@@ -88,6 +91,14 @@ SessionAware, ApplicationAware, ModelDriven<T> {
 		jsonConfig.setExcludes(excludes);
 		JSONObject jsonObject = JSONObject.fromObject(pageBean, jsonConfig);
 		String json=jsonObject.toString();
+		this.writeJson(json);
+	}
+	
+	public void WriteList2Json(List list, String[] excludes) throws IOException {
+		JsonConfig jsonConfig=new JsonConfig();
+		jsonConfig.setExcludes(excludes);
+		JSONArray jsonarray = JSONArray.fromObject(list, jsonConfig);
+		String json=jsonarray.toString();
 		this.writeJson(json);
 	}
 	@Override

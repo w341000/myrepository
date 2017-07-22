@@ -27,12 +27,42 @@
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
+	//序列化表单
+	$.fn.serializeJson=function(){  
+            var serializeObj={};  
+            var array=this.serializeArray();
+            $(array).each(function(){  
+                if(serializeObj[this.name]){  
+                    if($.isArray(serializeObj[this.name])){  
+                        serializeObj[this.name].push(this.value);  
+                    }else{  
+                        serializeObj[this.name]=[serializeObj[this.name],this.value];  
+                    }  
+                }else{  
+                    serializeObj[this.name]=this.value;   
+                }  
+            });  
+            return serializeObj;  
+        }; 
+        
+	var method=''; //执行方法的标志位
 	function doAdd(){
+		method='add';
+		$("#subareaForm").form("clear");
 		$('#addSubareaWindow').window("open");
 	}
 	
 	function doEdit(){
-		alert("修改...");
+		method='edit';
+		var arr=$("#grid").datagrid("getSelections");
+		if(arr.length!=1){
+			$.messager.alert("提示信息","请选择一个数据","warning");
+			return;
+		}
+		$("#subareaForm").form("clear");
+		$("#subareaForm").form("load",arr[0]);
+		$('#selectRegion').combobox('setValue',arr[0].region.id);
+		$('#addSubareaWindow').window("open");
 	}
 	
 	function doDelete(){
@@ -42,10 +72,11 @@
 	function doSearch(){
 		$('#searchWindow').window("open");
 	}
-	
+	//导出Excel文件
 	function doExport(){
-		alert("导出");
+		window.location.href="${pageContext.request.contextPath }/subareaAction_exportXls.action";
 	}
+	<% %>
 	
 	function doImport(){
 		alert("导入");
@@ -146,6 +177,8 @@
 		align : 'center'
 	} ] ];
 	
+	
+	
 	$(function(){
 		// 先将body隐藏，再显示，不会出现页面刷新效果
 		$("body").css({visibility:"visible"});
@@ -157,10 +190,10 @@
 			border : true,
 			rownumbers : true,
 			striped : true,
-			pageList: [30,50,100],
+			pageList: [1,30,50,100],
 			pagination : true,
 			toolbar : toolbar,
-			url : "json/subarea.json",
+			url : "${pageContext.request.contextPath }/subareaAction_pageQuery.action",
 			idField : 'id',
 			columns : columns,
 			onDblClickRow : doDblClickRow
@@ -187,8 +220,11 @@
 	        height: 400,
 	        resizable:false
 	    });
+	    //条件查询事件
 		$("#btn").click(function(){
-			alert("执行查询...");
+			var p=$("#searchForm").serializeJson();
+			$("#grid").datagrid("load",p);
+			$('#searchWindow').window("close");
 		});
 		
 	});
@@ -196,6 +232,34 @@
 	function doDblClickRow(){
 		alert("双击表格数据...");
 	}
+	//表格保存或修改事件
+	$(function(){
+		$("#save").click(function(){
+				$.messager.progress();
+				$('#subareaForm').form('submit', {
+					url:"${pageContext.request.contextPath }/subareaAction_"+method+".action",
+					onSubmit: function(){
+						var isValid = $(this).form('validate');
+						if (!isValid){
+							$.messager.progress('close');	// 如果表单是无效的则隐藏进度条
+						}
+						return isValid;	// 返回false终止表单提交
+					},
+					success: function(){
+						$("#grid").datagrid("load");
+						$.messager.progress('close');	// 如果提交成功则隐藏进度条
+						$('#addSubareaWindow').window("close");
+						$.messager.show({
+							title:"提示信息",
+							msg:"操作成功!"
+						});
+					}
+			});
+		});
+		
+		
+		
+	});
 </script>	
 </head>
 <body class="easyui-layout" style="visibility:hidden;">
@@ -211,20 +275,17 @@
 		</div>
 		
 		<div style="overflow:auto;padding:5px;" border="false">
-			<form>
+			<form id="subareaForm" method="post">
+				<input type="hidden"  name="id"/>
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">分区信息</td>
 					</tr>
 					<tr>
-						<td>分拣编码</td>
-						<td><input type="text" name="id" class="easyui-validatebox" required="true"/></td>
-					</tr>
-					<tr>
 						<td>选择区域</td>
 						<td>
-							<input class="easyui-combobox" name="region.id"  
-    							data-options="valueField:'id',textField:'name',url:'json/standard.json'" />  
+							<input id="selectRegion" class="easyui-combobox" name="region.id"  
+    							data-options="valueField:'id',textField:'name',mode:'remote'  ,url:' ${pageContext.request.contextPath }/regionAction_listajax.action  '" />  
 						</td>
 					</tr>
 					<tr>
@@ -242,7 +303,7 @@
 					<tr>
 						<td>单双号</td>
 						<td>
-							<select class="easyui-combobox" name="single" style="width:150px;">  
+							<select class="easyui-combobox" editable="false" name="single" style="width:150px;">  
 							    <option value="0">单双号</option>  
 							    <option value="1">单号</option>  
 							    <option value="2">双号</option>  
@@ -260,7 +321,7 @@
 	<!-- 查询分区 -->
 	<div class="easyui-window" title="查询分区窗口" id="searchWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div style="overflow:auto;padding:5px;" border="false">
-			<form>
+			<form id="searchForm">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">查询条件</td>

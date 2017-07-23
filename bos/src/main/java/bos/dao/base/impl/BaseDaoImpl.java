@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -104,6 +105,14 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 	public void saveOrUpdate(T entity) {
 		this.getSession().saveOrUpdate(entity);
 	}
+
+	@Override
+	public List<T> findByCriteria(DetachedCriteria detachedCriteria) {
+		Criteria criteria = detachedCriteria.getExecutableCriteria(getSession());
+		return criteria.list();
+	}
+
+
 	
 	
 

@@ -131,4 +131,15 @@ public class SubareaAction extends BaseAction<Subarea> {
 		 workbook.write(out);
 		return NONE;
 	}
+	
+	/**
+	 * 查询未关联到定区的分区数据,返回json
+	 * @throws IOException 
+	 */
+	public String listajax() throws IOException{
+		List<Subarea> list=subareaService.findListNotAssociation();
+		String[] excludes=new String[]{"region","decidedzone","startnum","endnum","single"};
+		this.WriteList2Json(list, excludes);
+		return NONE;
+	}
 }

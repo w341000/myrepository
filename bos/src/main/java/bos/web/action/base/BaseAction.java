@@ -93,7 +93,12 @@ SessionAware, ApplicationAware, ModelDriven<T> {
 		String json=jsonObject.toString();
 		this.writeJson(json);
 	}
-	
+	/**
+	 * 将list以json写回客户端
+	 * @param list 需要写回的list
+	 * @param excludes 需要被排除的属性名称
+	 * @throws IOException
+	 */
 	public void WriteList2Json(List list, String[] excludes) throws IOException {
 		JsonConfig jsonConfig=new JsonConfig();
 		jsonConfig.setExcludes(excludes);

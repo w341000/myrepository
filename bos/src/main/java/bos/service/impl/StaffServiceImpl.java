@@ -1,7 +1,11 @@
 package bos.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,6 +44,13 @@ public class StaffServiceImpl implements IStaffService {
 	@Override
 	public void update(Staff staff) {
 		staffDao.update(staff);
+	}
+	//查询没有作废的取派员,deltag为0
+	@Override
+	public List<Staff> findListNotDelete() {
+		DetachedCriteria detachedCriteria=DetachedCriteria.forClass(Staff.class);
+		detachedCriteria.add(Restrictions.eq("deltag", "1"));
+		return staffDao.findByCriteria(detachedCriteria) ;
 	}
 
 }

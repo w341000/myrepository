@@ -22,7 +22,10 @@ public class UserAction extends BaseAction<User> {
 	public void setCheckcode(String checkcode) {
 		this.checkcode = checkcode;
 	}
-	//登录操作
+	/**
+	 * 登录操作
+	 * @return
+	 */
 	public String login(){
 		//生成的验证码
 		String key=(String) session.get("key");
@@ -45,12 +48,18 @@ public class UserAction extends BaseAction<User> {
 			return "login";
 		}
 	}
-	//退出登录
+	/**
+	 * 退出登录
+	 * @return
+	 */
 	public String logout(){
 		session.put("loginUser", null);
 		return "login";
 	}
-	//修改密码
+	/**
+	 * 修改密码
+	 * @throws IOException
+	 */
 	public String editPassword() throws IOException{
 		User user=(User) session.get("loginUser");
 		String password =model.getPassword();

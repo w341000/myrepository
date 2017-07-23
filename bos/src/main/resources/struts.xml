@@ -43,8 +43,11 @@
 		<action name="regionAction_*" class="regionAction" method="{1}">
 			<result name="list">/WEB-INF/pages/base/region.jsp</result>
 		</action>
-		<action name="subareaAction_*" class="subareaAction" method="{1}"></action>
-		
-		
+		<!-- 分区管理 -->
+		<action name="subareaAction_*" class="subareaAction" method="{1}" />
+		<!-- 定区管理 -->
+		<action name="decidedzoneAction_*" class="decidedzoneAction" method="{1}">
+			<result name="list">/WEB-INF/pages/base/decidedzone.jsp</result>
+		</action>
 	</package>
 </struts>

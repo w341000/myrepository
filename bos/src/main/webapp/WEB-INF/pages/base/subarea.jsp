@@ -76,7 +76,6 @@
 	function doExport(){
 		window.location.href="${pageContext.request.contextPath }/subareaAction_exportXls.action";
 	}
-	<% %>
 	
 	function doImport(){
 		alert("导入");

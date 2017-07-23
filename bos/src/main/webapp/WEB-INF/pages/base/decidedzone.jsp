@@ -27,12 +27,25 @@
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
+	var method=''; //执行方法的标志位
 	function doAdd(){
+		method='add';
+		$("#addDecidedzoneForm").form("clear");
 		$('#addDecidedzoneWindow').window("open");
 	}
 	
 	function doEdit(){
-		alert("修改...");
+		method='edit';
+		var arr=$("#grid").datagrid("getSelections");
+		if(arr.length!=1){
+			$.messager.alert("提示信息","请选择一个数据","warning");
+			return;
+		}
+		$("#editDecidedzoneForm").form("clear");
+		$("#associationSubareaGrid").datagrid("load",{id:arr[0].id});
+		$("#editDecidedzoneForm").form("load",arr[0]);
+		$('#selectStaff').combobox('setValue',arr[0].staff.id);
+		$('#editDecidedzoneWindow').window("open");
 	}
 	
 	function doDelete(){
@@ -125,15 +138,15 @@
 			pageList: [30,50,100],
 			pagination : true,
 			toolbar : toolbar,
-			url : "json/decidedzone.json",
+			url : "${pageContext.request.contextPath }/decidedzoneAction_pageQuery.action",
 			idField : 'id',
 			columns : columns,
 			onDblClickRow : doDblClickRow
 		});
 		
-		// 添加、修改定区
+		// 添加定区window'
 		$('#addDecidedzoneWindow').window({
-	        title: '添加修改定区',
+	        title: '添加定区',
 	        width: 600,
 	        modal: true,
 	        shadow: true,
@@ -141,6 +154,31 @@
 	        height: 400,
 	        resizable:false
 	    });
+	    // 修改定区window
+		$('#editDecidedzoneWindow').window({
+	        title: '修改定区',
+	        width: 600,
+	        modal: true,
+	        shadow: true,
+	        closed: true,
+	        height: 450,
+	        resizable:false
+	    });
+		
+		//执行添加定区
+		$("#save").click(function(){
+				var isValid=$('#addDecidedzoneForm').form('validate');
+				if(isValid){
+					$('#addDecidedzoneForm').submit();
+				}
+		});
+			//执行修改定区
+		$("#update").click(function(){
+				var isValid=$('#editDecidedzoneForm').form('validate');
+				if(isValid){
+					$('#editDecidedzoneForm').submit();
+				}
+		});
 		
 		// 查询定区
 		$('#searchWindow').window({
@@ -156,16 +194,24 @@
 			alert("执行查询...");
 		});
 		
+		$("#associationSubareaGrid").datagrid({
+				onLoadSuccess:function(data){
+					if(data.rows.length>0){
+						$("#associationSubareaGrid").datagrid("selectAll");
+					}
+				}
+		});
+		
 	});
 
-	function doDblClickRow(){
+	function doDblClickRow(index, row){
 		alert("双击表格数据...");
 		$('#association_subarea').datagrid( {
 			fit : true,
 			border : true,
 			rownumbers : true,
 			striped : true,
-			url : "json/association_subarea.json",
+			url : "${pageContext.request.contextPath }/decidedzoneAction_listAssociationSubareaAjax.action?id="+row.id,
 			columns : [ [{
 				field : 'id',
 				title : '分拣编号',
@@ -266,7 +312,7 @@
 		</div>
 	</div>
 	
-	<!-- 添加 修改分区 -->
+	<!-- 添加定区 -->
 	<div class="easyui-window" title="定区添加修改" id="addDecidedzoneWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div style="height:31px;overflow:hidden;" split="false" border="false" >
 			<div class="datagrid-toolbar">
@@ -275,7 +321,7 @@
 		</div>
 		
 		<div style="overflow:auto;padding:5px;" border="false">
-			<form>
+			<form id="addDecidedzoneForm" method="post" action="${pageContext.request.contextPath }/decidedzoneAction_add.action">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">定区信息</td>
@@ -291,17 +337,17 @@
 					<tr>
 						<td>选择负责人</td>
 						<td>
-							<input class="easyui-combobox" name="region.id"  
-    							data-options="valueField:'id',textField:'name',url:'json/standard.json'" />  
+							<input class="easyui-combobox" name="staff.id"  
+    							data-options="valueField:'id',textField:'name',url:' ${pageContext.request.contextPath }/staffAction_listajax.action '" />  
 						</td>
 					</tr>
 					<tr height="300">
 						<td valign="top">关联分区</td>
 						<td>
-							<table id="subareaGrid"  class="easyui-datagrid" border="false" style="width:300px;height:300px" data-options="url:'json/decidedzone_subarea.json',fitColumns:true,singleSelect:false">
+							<table id="subareaGrid"  class="easyui-datagrid" border="false" style="width:300px;height:300px" data-options="url:' ${pageContext.request.contextPath }/subareaAction_listajax.action',fitColumns:true,singleSelect:false">
 								<thead>  
 							        <tr>  
-							            <th data-options="field:'id',width:30,checkbox:true">编号</th>  
+							            <th data-options="field:'subareaid',width:30,checkbox:true">编号</th>  
 							            <th data-options="field:'addresskey',width:150">关键字</th>  
 							            <th data-options="field:'position',width:200,align:'right'">位置</th>  
 							        </tr>  
@@ -313,6 +359,68 @@
 			</form>
 		</div>
 	</div>
+	<!-- 修改定区 -->
+	<div class="easyui-window" title="定区添加修改" id="editDecidedzoneWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
+		<div style="height:31px;overflow:hidden;" split="false" border="false" >
+			<div class="datagrid-toolbar">
+				<a id="update" icon="icon-save" href="#" class="easyui-linkbutton" plain="true" >更新</a>
+			</div>
+		</div>
+		
+		<div style="overflow:auto;padding:5px;" border="false">
+			<form id="editDecidedzoneForm" method="post" action="${pageContext.request.contextPath }/decidedzoneAction_edit.action">
+				<table class="table-edit" width="80%" align="center">
+					<tr class="title">
+						<td colspan="2">定区信息</td>
+					</tr>
+					<tr>
+						<td>定区编码</td>
+						<td><input type="text" name="id" class="easyui-validatebox" required="true"/></td>
+					</tr>
+					<tr>
+						<td>定区名称</td>
+						<td><input type="text" name="name" class="easyui-validatebox" required="true"/></td>
+					</tr>
+					<tr>
+						<td>选择负责人</td>
+						<td>
+							<input id="selectStaff" class="easyui-combobox" name="staff.id"  
+    							data-options="valueField:'id',textField:'name',url:' ${pageContext.request.contextPath }/staffAction_listajax.action '" />  
+						</td>
+					</tr> 
+			 		<tr height="300">
+						<td valign="top">已经关联分区</td>
+						<td>
+							<table id="associationSubareaGrid"  class="easyui-datagrid" border="false" style="width:300px;height:170px" data-options="url:' ${pageContext.request.contextPath }/decidedzoneAction_listAssociationSubareaAjax.action',fitColumns:true,singleSelect:false">
+								<thead>  
+							        <tr>  
+							            <th data-options="field:'subareaid',width:30,checkbox:true">编号</th>  
+							            <th data-options="field:'addresskey',width:150">关键字</th>  
+							            <th data-options="field:'position',width:200,align:'right'">位置</th>  
+							        </tr>  
+							    </thead> 
+							</table>
+						</td>
+					</tr>
+					<tr height="100">
+						<td valign="top">关联分区</td>
+						<td>
+							<table id="subareaGrid"  class="easyui-datagrid" border="false" style="width:300px;height:300px" data-options="url:' ${pageContext.request.contextPath }/subareaAction_listajax.action',fitColumns:true,singleSelect:false">
+								<thead>  
+							        <tr>  
+							            <th data-options="field:'subareaid',width:30,checkbox:true">编号</th>  
+							            <th data-options="field:'addresskey',width:150">关键字</th>  
+							            <th data-options="field:'position',width:200,align:'right'">位置</th>  
+							        </tr>  
+							    </thead> 
+							</table>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	
 	<!-- 查询定区 -->
 	<div class="easyui-window" title="查询定区窗口" id="searchWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div style="overflow:auto;padding:5px;" border="false">

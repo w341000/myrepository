@@ -12,13 +12,13 @@
             <column name="id" length="32" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="staff" class="bos.domain.Staff" fetch="select">
+        <many-to-one name="staff" lazy="false" class="bos.domain.Staff" fetch="select">
             <column name="staff_id" length="32" />
         </many-to-one>
         <property name="name" type="java.lang.String">
             <column name="name" length="30" />
         </property>
-        <set name="subareas" inverse="true">
+        <set name="subareas" lazy="false" inverse="true" >
             <key>
                 <column name="decidedzone_id" length="32" />
             </key>

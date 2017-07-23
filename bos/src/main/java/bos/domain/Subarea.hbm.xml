@@ -35,4 +35,7 @@
             <column name="position" />
         </property>
     </class>
+    <query name="updateSubareas">
+    	UPDATE Subarea Set decidedzone.id=? WHERE id=?
+    </query>
 </hibernate-mapping>

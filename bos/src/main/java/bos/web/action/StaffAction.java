@@ -1,19 +1,15 @@
 package bos.web.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.Resource;
 
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
-
-import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import bos.domain.Staff;
 import bos.service.IStaffService;
-import bos.utils.PageBean;
 import bos.web.action.base.BaseAction;
 @Controller@Scope("prototype")
 public class StaffAction extends BaseAction<Staff> {
@@ -64,5 +60,15 @@ public class StaffAction extends BaseAction<Staff> {
 		staff.setStandard(model.getStandard());
 		staffService.update(staff);
 		return "list";
+	}
+	/**
+	 * 查询没有作废的取派员,返回json
+	 * @throws IOException 
+	 */
+	public String listajax() throws IOException{
+		List<Staff> list=staffService.findListNotDelete();
+		String[] excludes=new String[]{"telephone","haspda","deltag","station","standard","decidedzones"};
+		this.WriteList2Json(list, excludes);
+		return NONE;
 	}
 }

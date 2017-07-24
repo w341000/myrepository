@@ -48,9 +48,12 @@
 		    <artifactId>pinyin4j</artifactId>
 		    <version>2.5.0</version>
 		</dependency>
-		
-		
-  
+		<!-- hessian的jar包 -->
+		<dependency>
+		    <groupId>com.caucho</groupId>
+		    <artifactId>hessian</artifactId>
+		    <version>4.0.33</version>
+		</dependency>
   		<!-- spring -->
         <dependency>
             <groupId>org.springframework</groupId>

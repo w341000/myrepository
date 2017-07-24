@@ -10,6 +10,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import cn.itcast.crm.domain.Customer;
+
+import bos.crm.CustomerService;
 import bos.domain.Decidedzone;
 import bos.service.IDecidedzoneService;
 import bos.web.action.base.BaseAction;
@@ -17,8 +20,16 @@ import bos.web.action.base.BaseAction;
 public class DecidedzoneAction extends BaseAction<Decidedzone> {
 	//接受分区id
 	private String[] subareaid;
+	//接受客户id
+	private Integer[] customerIds;
 	@Resource
 	private IDecidedzoneService decidedzoneService;
+	@Resource
+	private CustomerService customerService;
+	
+	public void setCustomerIds(Integer[] customerIds) {
+		this.customerIds = customerIds;
+	}
 	public void setSubareaid(String[] subareaid) {
 		this.subareaid = subareaid;
 	}
@@ -65,5 +76,32 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
 				"detachedCriteria", "subareas", "decidedzones" };
 		this.WritePageBean2Json(excludes);
 		return NONE;
+	}
+	/**
+	 * 查找未关联定区的客户
+	 * @throws IOException 
+	 */
+	public String findnoassociationCustomers() throws IOException{
+		List<Customer> list = customerService.findnoassociationCustomers();
+		String[] excludes=new String[]{"station","address"};
+		this.WriteList2Json(list, excludes);
+		return NONE;
+	}
+	/**
+	 * 查找已关联到定区的客户
+	 * @throws IOException
+	 */
+	public String findhasassociationCustomers() throws IOException{
+		List<Customer> list = customerService.findhasassociationCustomers(model.getId());
+		String[] excludes=new String[]{"station","address"};
+		this.WriteList2Json(list, excludes);
+		return NONE;
+	}
+	/**
+	 * 定区关联客户
+	 */
+	public String assigncustomerstodecidedzone(){
+		customerService.assignCustomersToDecidedZone(customerIds, model.getId());
+		return "list";
 	}
 }

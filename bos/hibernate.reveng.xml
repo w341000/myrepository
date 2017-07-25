@@ -9,4 +9,11 @@
 	<table name="bc_region" catalog="bos" class="bos.domain.Region"></table>
 	<table name="bc_staff" catalog="bos" class="bos.domain.Staff"></table>
 	<table name="bc_subarea" catalog="bos" class="bos.domain.Subarea"></table>
+	<table name="qp_noticebill" catalog="bos"
+		class="bos.domain.Noticebill">
+	</table>
+	<table name="qp_workbill" catalog="bos"
+		class="bos.domain.Workbill">
+	</table>
+	<table name="qp_workordermanage" catalog="bos" class="bos.domain.Workordermanage"></table>
 </hibernate-reverse-engineering>

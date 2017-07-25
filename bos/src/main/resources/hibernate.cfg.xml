@@ -23,6 +23,9 @@
 		<mapping resource="bos/domain/Region.hbm.xml" />
 		<mapping resource="bos/domain/Staff.hbm.xml" />
 		<mapping resource="bos/domain/Decidedzone.hbm.xml" />
+		<mapping resource="bos/domain/Noticebill.hbm.xml" />
+		<mapping resource="bos/domain/Workbill.hbm.xml" />
+		<mapping resource="bos/domain/Workordermanage.hbm.xml" />
 
 	</session-factory>
 

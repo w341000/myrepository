@@ -49,5 +49,9 @@
 		<action name="decidedzoneAction_*" class="decidedzoneAction" method="{1}">
 			<result name="list">/WEB-INF/pages/base/decidedzone.jsp</result>
 		</action>
+		<!-- 业务受理action -->
+		<action name="noticebillAction_*" class="noticebillAction" method="{1}">
+			<result name="addUI">/WEB-INF/pages/qupai/noticebill_add.jsp</result>
+		</action>
 	</package>
 </struts>

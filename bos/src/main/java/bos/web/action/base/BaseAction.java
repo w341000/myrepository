@@ -106,6 +106,14 @@ SessionAware, ApplicationAware, ModelDriven<T> {
 		String json=jsonarray.toString();
 		this.writeJson(json);
 	}
+	public void WriteObject2Json(Object obj,String[] excludes) throws IOException{
+		JsonConfig jsonConfig=new JsonConfig();
+		jsonConfig.setExcludes(excludes);
+		JSONObject jsonObject = JSONObject.fromObject(obj, jsonConfig);
+		String json=jsonObject.toString();
+		this.writeJson(json);
+		
+	}
 	@Override
 	public T getModel() {
 		return model;

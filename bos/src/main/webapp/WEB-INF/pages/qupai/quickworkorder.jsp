@@ -122,11 +122,11 @@
 		}
 	}, {
 		field : 'weight',
-		title : '重量',
+		title : '重量(kg)',
 		width : 120,
 		align : 'center',
 		editor :{
-			type : 'validatebox',
+			type : 'numberbox',
 			options : {
 				required: true
 			}
@@ -165,6 +165,21 @@
 			onAfterEdit : function(rowIndex, rowData, changes){
 				console.info(rowData);
 				editIndex = undefined;
+				//发送ajax请求,服务器端完成保存操作
+				var url="${pageContext.request.contextPath }/workordermanageAction_add.action";
+				$.post(url,rowData,function(data){
+					if(data==1){
+						$.messager.show({
+							title:'提示信息',
+							msg:'保存成功!'
+						});
+					}else{
+						$.messager.show({
+							title:'提示信息',
+							msg:'保存失败!'
+						});
+					}
+				});
 			}
 		});
 	});

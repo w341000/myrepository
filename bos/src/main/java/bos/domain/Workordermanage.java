@@ -30,7 +30,7 @@ public class Workordermanage implements java.io.Serializable {
 	private Double actlweit;//实际重量
 	private String vol;//体积
 	private String managerCheck;//是否审核配送
-	private Date updatetime;//系统时间
+	private Date updatetime=new Date();//系统时间
 
 	// Constructors
 

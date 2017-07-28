@@ -24,7 +24,12 @@
 		<default-interceptor-ref name="myStack"></default-interceptor-ref>
 		<global-results>
 			<result name="login" type="redirect">/login.jsp</result>
+			<result name="unauthorized">/errorpages/unauthorized.jsp</result>
 		</global-results>
+		<!-- 全局权限异常页面 -->
+		<global-exception-mappings>
+			<exception-mapping result="unauthorized" exception="org.apache.shiro.authz.UnauthorizedException"></exception-mapping>
+		</global-exception-mappings>
 	
 		<!-- 需要进行权限控制的页面访问 -->
 		<action name="page_*_*">

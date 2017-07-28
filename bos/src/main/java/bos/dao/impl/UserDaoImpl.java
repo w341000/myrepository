@@ -20,4 +20,14 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements IUserDao {
 		return null;
 	}
 
+	@Override
+	public User findByUsername(String username) {
+		String hql="FROM User u where u.username=?";
+		List<User> list=super.find(hql, username);
+		if(list!=null && list.size()>0){
+			return list.get(0);
+		}
+		return null;
+	}
+
 }

@@ -2,6 +2,8 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
+
+
 	<table name="t_user" catalog="bos" class="bos.domain.User"></table>
 	<table name="bc_decidedzone" catalog="bos"
 		class="bos.domain.Decidedzone">
@@ -15,5 +17,11 @@
 	<table name="qp_workbill" catalog="bos"
 		class="bos.domain.Workbill">
 	</table>
-	<table name="qp_workordermanage" catalog="bos" class="bos.domain.Workordermanage"></table>
+	<table name="qp_workordermanage" catalog="bos"
+		class="bos.domain.Workordermanage">
+	</table>
+	<table name="auth_function" catalog="bos"
+		class="bos.domain.Function">
+	</table>
+	<table name="auth_role" catalog="bos" class="bos.domain.Role"></table>
 </hibernate-reverse-engineering>

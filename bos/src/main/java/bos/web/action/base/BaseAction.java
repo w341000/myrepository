@@ -48,8 +48,15 @@ SessionAware, ApplicationAware, ModelDriven<T> {
 		@SuppressWarnings("unchecked")
 		public BaseAction() {
 			//获取子类实际泛型类型信息
-			ParameterizedType type = (ParameterizedType) this.getClass()
-					.getGenericSuperclass();
+			ParameterizedType type = null;
+			
+			if(this.getClass().getGenericSuperclass() instanceof ParameterizedType){
+				type=(ParameterizedType) this.getClass().getGenericSuperclass();
+			}
+			else{//当前为action创建了代理
+				type=(ParameterizedType) this.getClass().getSuperclass().getGenericSuperclass();
+			}
+				
 			Class<T>  clazz = (Class<T>) type.getActualTypeArguments()[0];
 			//给pagebean设置查询信息
 			detachedCriteria=DetachedCriteria.forClass(clazz);

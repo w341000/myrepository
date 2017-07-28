@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -24,6 +26,7 @@ public class StaffAction extends BaseAction<Staff> {
 	}
 	
 	//取派员添加
+	@RequiresPermissions("staff:add")
 	public String add(){
 		staffService.save(model);
 		return "list";
@@ -44,6 +47,7 @@ public class StaffAction extends BaseAction<Staff> {
 	 * 批量逻辑删除Staff
 	 * @return
 	 */
+	@RequiresPermissions("staff:delete")
 	public String delete(){
 		staffService.deleteBatch(ids);
 		return "list";
@@ -51,6 +55,7 @@ public class StaffAction extends BaseAction<Staff> {
 	/**
 	 * 修改取派员信息
 	 */
+	@RequiresPermissions("staff:edit")
 	public String edit(){
 		Staff staff=staffService.findById(model.getId());
 		staff.setName(model.getName());

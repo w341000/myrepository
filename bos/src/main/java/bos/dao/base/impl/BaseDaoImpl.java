@@ -3,20 +3,15 @@ package bos.dao.base.impl;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
-import org.hibernate.transform.ResultTransformer;
-
 import bos.dao.base.IBaseDao;
 import bos.utils.PageBean;
-
 public class BaseDaoImpl<T> implements IBaseDao<T> {
 	
 	private Class<T> clazz;

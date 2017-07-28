@@ -26,6 +26,8 @@
 		<mapping resource="bos/domain/Noticebill.hbm.xml" />
 		<mapping resource="bos/domain/Workbill.hbm.xml" />
 		<mapping resource="bos/domain/Workordermanage.hbm.xml" />
+		<mapping resource="bos/domain/Function.hbm.xml" />
+		<mapping resource="bos/domain/Role.hbm.xml" />
 
 	</session-factory>
 

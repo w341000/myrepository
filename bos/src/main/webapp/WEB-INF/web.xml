@@ -4,6 +4,17 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
 id="WebApp_ID" version="3.0">
   <display-name>Archetype Created Web Application</display-name>
   
+  <!-- shiro相关filter -->
+  <filter>
+  	<filter-name>shiroFilter</filter-name>
+  	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>shiroFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
    <!-- 先加载ServerContext监听器,在加载过滤器, 如果同级别,则先配置先加载 -->
   <!-- 配置session的早开晚关的过滤器  -->
   <filter>
@@ -56,6 +67,6 @@ id="WebApp_ID" version="3.0">
   
   
   <welcome-file-list>
- 	 <welcome-file>login.jsp</welcome-file>
+ 	 <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
 </web-app>

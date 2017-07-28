@@ -60,4 +60,41 @@
 		<property name="serviceInterface" value="bos.crm.CustomerService"/><!-- 注入接口类型 -->
 		<property name="serviceUrl" value="http://localhost:8080/crm/remoting/customer"/> <!-- 服务访问路径 -->
 	</bean>
+	<!-- 配置一个shiro工厂bean用于创建shiro框架用到的过滤器 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" /><!-- 注入安全管理器 -->
+		<property name="loginUrl" value="/login.jsp"/><!-- 注入当前系统的登录页面 -->
+		<property name="successUrl" value="/index.jsp" /><!-- 注入登录成功页面 -->
+		<property name="unauthorizedUrl" value="/errorpages/unauthorized.jsp"/><!-- 注入权限不足提示页面 -->
+		<!-- 注入url拦截规则 -->
+		<property name="filterChainDefinitions">
+			<value>
+				/css/** = anon
+				/images/** = anon
+				/js/** = anon
+				/errorpages/** = anon
+				/login.jsp* = anon
+				/validatecode.jsp* = anon
+				/userAction_login.action = anon
+				/page_base_staff.action = perms["staff:look"]
+				/* = authc
+			</value>
+		</property>
+	</bean>
+	<!-- 让spring管理自定义realm -->
+	<bean id="bosRealm"  class="bos.shiro.BOSRealm"/>
+	<!-- shiro安全管理器,为其注入realm -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" >
+		<property name="realm" ref="bosRealm"/>
+	</bean>
+	<!-- 开启shiro注解 -->
+	<!-- 自动代理 -->
+	<bean id="defaultAdvisorAutoProxyCreator" 
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+		<!-- 强制使用cglib为Action创建代理对象 -->
+		<property name="proxyTargetClass" value="true"></property>
+	</bean>
+	
+	<!-- 切面类 -->
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"/>
 </beans>

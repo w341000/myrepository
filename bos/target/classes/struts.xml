@@ -35,7 +35,7 @@
 		<action name="page_*_*">
 			<result name="success" type="dispatcher">/WEB-INF/pages/{1}/{2}.jsp</result>
 		</action>
-		
+		<!-- 用户管理 -->
 		<action name="userAction_*" class="userAction" method="{1}">
 			<result name="home" type="redirect">/index.jsp</result>
 			<result name="login">/login.jsp</result>
@@ -58,7 +58,16 @@
 		<action name="noticebillAction_*" class="noticebillAction" method="{1}">
 			<result name="addUI">/WEB-INF/pages/qupai/noticebill_add.jsp</result>
 		</action>
-		<!-- 工作单关联 -->
-		<action name="workordermanageAction_*" class="workordermanageAction" method="{1}"></action>
+		<!-- 工作单管理 -->
+		<action name="workordermanageAction_*" class="workordermanageAction" method="{1}" />
+		
+		<!-- 权限管理 -->
+		<action name="functionAction_*" class="functionAction" method="{1}">
+			<result name="list">/WEB-INF/pages/admin/function.jsp</result>
+		</action>
+		<!-- 角色管理 -->
+		<action name="roleAction_*" class="roleAction" method="{1}">
+			<result name="list">/WEB-INF/pages/admin/role.jsp</result>
+		</action>
 	</package>
 </struts>

@@ -9,6 +9,7 @@ import bos.dao.IUserDao;
 import bos.domain.User;
 import bos.service.IUserService;
 import bos.utils.MD5Utils;
+import bos.utils.PageBean;
 @Service @Transactional
 public class UserServiceImpl implements IUserService {
 	@Resource
@@ -26,6 +27,11 @@ public class UserServiceImpl implements IUserService {
 	public void editPassword(String password, String id) {
 		userDao.executeUpdate("editPassword", password,id);
 		
+	}
+
+	@Override
+	public void pageQuery(PageBean pageBean) {
+		userDao.pageQuery(pageBean);
 	}
 
 }

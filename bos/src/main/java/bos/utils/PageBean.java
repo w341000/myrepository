@@ -7,9 +7,9 @@ import org.hibernate.criterion.DetachedCriteria;
 public class PageBean {
 
 	private List rows;//当前页展示的数据集合
-	private int pageSize;//页面大小
+	private int pageSize=10;//页面大小
 	private int total;//总记录数
-	private int currentPage;//当前页码
+	private int currentPage=1;//当前页码
 	private DetachedCriteria detachedCriteria; //离线查询对象,包装了查询条件
 	public List getRows() {
 		return rows;

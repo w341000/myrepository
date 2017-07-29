@@ -10,7 +10,7 @@
     <class name="bos.domain.Function" table="auth_function" catalog="bos">
         <id name="id" type="java.lang.String">
             <column name="id" length="32" />
-            <generator class="assigned" />
+            <generator class="uuid" />
         </id>
         <many-to-one name="function" class="bos.domain.Function" fetch="select">
             <column name="pid" length="32" />

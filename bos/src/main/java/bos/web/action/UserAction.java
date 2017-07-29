@@ -120,4 +120,15 @@ public class UserAction extends BaseAction<User> {
 		ServletActionContext.getResponse().getWriter().write(flag);
 		return NONE;
 	}
+	/**
+	 * 用户分页查询
+	 * @return
+	 * @throws IOException 
+	 */
+	public String pageQuery() throws IOException{
+		userService.pageQuery(pageBean);
+		String[]  excludes=new String[]{"pageSize","currentPage","detachedCriteria","noticebills","roles"};
+		this.WritePageBean2Json(excludes);
+		return NONE;
+	}
 }

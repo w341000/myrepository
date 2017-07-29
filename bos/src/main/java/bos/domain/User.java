@@ -21,7 +21,7 @@ public class User implements java.io.Serializable {
 	private String station;
 	private String telephone;
 	private String remark;
-	private Set roles = new HashSet(0);
+	private Set<Role> roles = new HashSet<Role>(0);
 	private Set noticebills = new HashSet(0);
 
 	// Constructors
@@ -53,7 +53,14 @@ public class User implements java.io.Serializable {
 		this.roles = roles;
 		this.noticebills = noticebills;
 	}
-
+	
+	public String getRoleNames(){
+		StringBuilder names=new StringBuilder();
+		for(Role role:roles){
+			names.append(role.getName()+" ");
+		}
+		return names.toString();
+	}
 	// Property accessors
 
 	public String getId() {

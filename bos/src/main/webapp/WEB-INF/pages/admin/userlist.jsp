@@ -74,9 +74,9 @@
 		title : '其他信息',
 		colspan : 2
 	}, {
-		field : 'telephone',
-		title : '电话',
-		width : 800,
+		field : 'roleNames',
+		title : '角色',
+		width : 200,
 		rowspan : 2
 	} ], [ {
 		field : 'station',
@@ -99,7 +99,9 @@
 			rownumbers : true,
 			striped : true,
 			toolbar : toolbar,
-			url : "json/users.json",
+			url : "${pageContext.request.contextPath}/userAction_pageQuery.action",
+			pageList: [10,30,50,100],
+			pagination : true,
 			idField : 'id', 
 			frozenColumns : frozenColumns,
 			columns : columns,

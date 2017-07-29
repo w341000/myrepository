@@ -39,7 +39,9 @@
 					}
 				}           
 			],
-			url : '',
+			url : '${pageContext.request.contextPath}/functionAction_pageQuery.action',
+			pageList: [10,30,50,100],
+			pagination : true,
 			columns : [[
 			  {
 				  field : 'id',
@@ -57,9 +59,16 @@
 				  width : 200
 			  },  
 			  {
-				  field : 'generateMenu',
+				  field : 'generatemenu',
 				  title : '是否生成菜单',
-				  width : 200
+				  width : 100,
+				  formatter : function(data,row, index){
+					if(data=="1"){
+						return "是";
+					}else{
+						return "否";
+					}
+				}
 			  },  
 			  {
 				  field : 'zindex',

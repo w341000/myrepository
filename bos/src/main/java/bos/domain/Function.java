@@ -12,14 +12,14 @@ public class Function implements java.io.Serializable {
 	// Fields
 
 	private String id;
-	private Function function;
+	private Function function;//代表父权限
 	private String name;
 	private String code;
 	private String description;
 	private String page;
-	private String generatemenu;
+	private String generatemenu="1";//当前权限是否要生成到菜单上,"1"为生成,0为不生成
 	private Integer zindex;
-	private Set functions = new HashSet(0);
+	private Set functions = new HashSet(0);//代表子权限
 	private Set roles = new HashSet(0);
 
 	// Constructors
@@ -50,7 +50,13 @@ public class Function implements java.io.Serializable {
 	}
 
 	// Property accessors
-
+	public String getpId(){
+		if(function!=null){
+			return function.getId();
+		}else{
+			return "0";
+		}
+	}
 	public String getId() {
 		return this.id;
 	}

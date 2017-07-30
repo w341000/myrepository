@@ -65,7 +65,7 @@
 		rowspan : 2,
 		align : 'center'
 	}, {
-		field : 'birthday',
+		field : 'formateBirthday',
 		title : '生日',
 		width : 120,
 		rowspan : 2,
@@ -123,7 +123,6 @@
 	}
 	
 	function doAdd() {
-		alert("添加用户");
 		location.href="${pageContext.request.contextPath}/page_admin_userinfo.action";
 	}
 

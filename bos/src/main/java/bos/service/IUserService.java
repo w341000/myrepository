@@ -11,4 +11,6 @@ public interface IUserService {
 
 	public void pageQuery(PageBean pageBean);
 
+	public void save(User user, String[] roleIds);
+
 }

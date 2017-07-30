@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,11 +47,10 @@
 		
 		// 基本功能菜单加载
 		$.ajax({
-			url : '${pageContext.request.contextPath}/json/menu.json',
+			url : '${pageContext.request.contextPath}/functionAction_findMenu.action',
 			type : 'POST',
 			dataType : 'json',
 			success : function(data) {
-				//var zNodes = eval("(" + data + ")");
 				$.fn.zTree.init($("#treeMenu"), setting, data);
 			},
 			error : function(msg) {
@@ -77,7 +77,7 @@
 		window.setTimeout(function(){
 			$.messager.show({
 				title:"消息提示",
-				msg:'欢迎登录，超级管理员！ <a href="javascript:void" onclick="top.showAbout();">联系管理员</a>',
+				msg:'欢迎登录 ，${loginUser.username}！ <a href="javascript:void" onclick="top.showAbout();">联系管理员</a>',
 				timeout:5000
 			});
 		},3000);
@@ -180,6 +180,7 @@
 	}
 </script>
 </head>
+
 <body class="easyui-layout">
 	<div data-options="region:'north',border:false"
 		style="height:80px;padding:10px;background:url('./images/header_bg.png') no-repeat right;">
@@ -189,7 +190,7 @@
 		</div>
 		<div id="sessionInfoDiv"
 			style="position: absolute;right: 5px;top:10px;">
-			[<strong>超级管理员</strong>]，欢迎你！
+			[<strong>${loginUser.username}</strong>]，欢迎你！
 		</div>
 		<div style="position: absolute; right: 5px; bottom: 10px; ">
 			<a href="javascript:void(0);" class="easyui-menubutton"

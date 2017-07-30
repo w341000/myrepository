@@ -10,6 +10,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import bos.dao.base.IBaseDao;
 import bos.utils.PageBean;
 public class BaseDaoImpl<T> implements IBaseDao<T> {
@@ -50,10 +53,10 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		return (T) getSession().get(clazz, id);
 	}
 
-	@Override
+	@Override  
 	public List<T> findAll() {
 		String hql="FROM "+clazz.getSimpleName();
-		Query query=getSession().createQuery(hql);
+		Query query=this.getSession().createQuery(hql);
 		return query.list();
 	}
 	@Override
@@ -75,7 +78,7 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		query.executeUpdate();
 	}
 
-	@Override
+	@Override 
 	public void pageQuery(PageBean pageBean) {
 		int currentPage = pageBean.getCurrentPage();
 		int pageSize = pageBean.getPageSize();
@@ -101,7 +104,7 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		this.getSession().saveOrUpdate(entity);
 	}
 
-	@Override
+	@Override 
 	public List<T> findByCriteria(DetachedCriteria detachedCriteria) {
 		Criteria criteria = detachedCriteria.getExecutableCriteria(getSession());
 		return criteria.list();

@@ -61,7 +61,7 @@
 		<property name="serviceUrl" value="http://localhost:8080/crm/remoting/customer"/> <!-- 服务访问路径 -->
 	</bean>
 	<!-- 配置一个shiro工厂bean用于创建shiro框架用到的过滤器 -->
-	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+	<bean id="shiroFilter" class="bos.shiro.filter.ShiroPermissionFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" /><!-- 注入安全管理器 -->
 		<property name="loginUrl" value="/login.jsp"/><!-- 注入当前系统的登录页面 -->
 		<property name="successUrl" value="/index.jsp" /><!-- 注入登录成功页面 -->
@@ -75,8 +75,8 @@
 				/errorpages/** = anon
 				/login.jsp* = anon
 				/validatecode.jsp* = anon
-				/userAction_login.action = anon
-				/page_base_staff.action = perms["staff:look"]
+				/userAction_login.action= anon
+				/page_base_staff.action= perms["staff:look"]
 				/* = authc
 			</value>
 		</property>
@@ -85,8 +85,14 @@
 	<bean id="bosRealm"  class="bos.shiro.BOSRealm"/>
 	<!-- shiro安全管理器,为其注入realm -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" >
-		<property name="realm" ref="bosRealm"/>
+		<property name="realm" ref="bosRealm"/><!-- 注册上面的realm -->
+		<property name="cacheManager" ref="cacheManager"/><!-- 注入缓存管理器 -->
 	</bean>
+	<!-- 注册shiro缓存管理器 -->
+	<bean id="cacheManager"  class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:ehcache.xml" />
+	</bean>
+	
 	<!-- 开启shiro注解 -->
 	<!-- 自动代理 -->
 	<bean id="defaultAdvisorAutoProxyCreator" 

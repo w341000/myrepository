@@ -1,8 +1,10 @@
 package bos.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.SimpleFormatter;
 
 /**
  * User entity. @author MyEclipse Persistence Tools
@@ -63,6 +65,13 @@ public class User implements java.io.Serializable {
 	}
 	// Property accessors
 
+	public String getFormateBirthday(){
+		if(birthday!=null)
+			return new SimpleDateFormat("yyyy-MM-dd").format(this.birthday);
+		else
+			return "未提交生日";
+	}
+	
 	public String getId() {
 		return this.id;
 	}

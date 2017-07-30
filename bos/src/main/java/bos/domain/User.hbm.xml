@@ -10,7 +10,7 @@
     <class name="bos.domain.User" table="t_user" catalog="bos">
         <id name="id" type="java.lang.String">
             <column name="id" length="32" />
-            <generator class="assigned" />
+            <generator class="uuid" />
         </id>
         <property name="username" type="java.lang.String">
             <column name="username" length="20" not-null="true" />

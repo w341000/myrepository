@@ -1,5 +1,7 @@
 package bos.shiro;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.shiro.authc.AuthenticationException;
@@ -11,8 +13,12 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import bos.dao.IFunctionDao;
 import bos.dao.IUserDao;
+import bos.domain.Function;
 import bos.domain.User;
 /**
  * 自定义realm
@@ -20,14 +26,15 @@ import bos.domain.User;
 public class BOSRealm extends AuthorizingRealm {
 	@Resource
 	private IUserDao userDao;
+	@Resource
+	private IFunctionDao functionDao;
 
 	/**
 	 * 认证方法
 	 */
-	@Override
+	@Override 
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken token) throws AuthenticationException {
-		System.out.println("认证方法");
 		UsernamePasswordToken uptoken=(UsernamePasswordToken) token;
 		String username = uptoken.getUsername();//从令牌获得的用户名
 		User user=userDao.findByUsername(username);
@@ -44,11 +51,23 @@ public class BOSRealm extends AuthorizingRealm {
 	/**
 	 * 授权方法
 	 */
-	@Override
+	@Override @Transactional
 	protected AuthorizationInfo doGetAuthorizationInfo(
 			PrincipalCollection principals) {
 		SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
-		info.addStringPermission("staff");
+		//根据当前登录用户,查询对应的权限进行授权
+		User user=(User) principals.getPrimaryPrincipal();
+		List<Function> list=null;
+		if("admin".equals(user.getUsername())){
+			//当前用户是超级管理员,查询所有权限
+			list = functionDao.findAll();
+		}else{
+			//根据用户id查询权限
+			list=functionDao.findListByUserid(user.getId());
+		}
+		for (Function function : list) {
+			info.addStringPermission(function.getCode());
+		}
 		return info;
 	}
 

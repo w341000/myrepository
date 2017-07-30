@@ -50,6 +50,7 @@ public class Function implements java.io.Serializable {
 	}
 
 	// Property accessors
+	//获取父菜单id,给ztree使用
 	public String getpId(){
 		if(function!=null){
 			return function.getId();

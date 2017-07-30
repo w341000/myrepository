@@ -29,7 +29,12 @@ public class UserAction extends BaseAction<User> {
 	private String checkcode;
 	@Resource
 	private IUserService userService;
+	private String[] roleIds;
 	
+	
+	public void setRoleIds(String[] roleIds) {
+		this.roleIds = roleIds;
+	}
 	public void setCheckcode(String checkcode) {
 		this.checkcode = checkcode;
 	}
@@ -98,7 +103,9 @@ public class UserAction extends BaseAction<User> {
 	 * @return
 	 */
 	public String logout(){
-		session.put("loginUser", null);
+		Subject subject=SecurityUtils.getSubject();
+		subject.logout();
+		ServletActionContext.getRequest().getSession().invalidate();
 		return "login";
 	}
 	/**
@@ -130,5 +137,12 @@ public class UserAction extends BaseAction<User> {
 		String[]  excludes=new String[]{"pageSize","currentPage","detachedCriteria","noticebills","roles"};
 		this.WritePageBean2Json(excludes);
 		return NONE;
+	}
+	/**
+	 * 添加用户
+	 */
+	public String add(){
+		userService.save(model,roleIds);
+		return "list";
 	}
 }

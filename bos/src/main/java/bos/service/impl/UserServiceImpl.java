@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import bos.dao.IUserDao;
+import bos.domain.Role;
 import bos.domain.User;
 import bos.service.IUserService;
 import bos.utils.MD5Utils;
@@ -32,6 +33,19 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public void pageQuery(PageBean pageBean) {
 		userDao.pageQuery(pageBean);
+	}
+
+	@Override
+	public void save(User user, String[] roleIds) {
+		String password = user.getPassword();
+		password=MD5Utils.md5(password);
+		user.setPassword(password);
+		userDao.save(user);//持久对象
+		//用户关联角色
+		for (String rid : roleIds) {
+			user.getRoles().add(new Role(rid));
+		}
+		
 	}
 
 }

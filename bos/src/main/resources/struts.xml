@@ -16,7 +16,9 @@
 			</interceptor>
 			<!-- 注册拦截器栈 -->
 			<interceptor-stack name="myStack">
+				<!--  不使用自己的拦截器,使用shiro进行登录拦截
 				<interceptor-ref name="LoginInterceptor"></interceptor-ref>
+				-->
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
@@ -39,6 +41,7 @@
 		<action name="userAction_*" class="userAction" method="{1}">
 			<result name="home" type="redirect">/index.jsp</result>
 			<result name="login">/login.jsp</result>
+			<result name="list">/WEB-INF/pages/admin/userlist.jsp</result>
 		</action>
 		<!-- 取派员管理 -->
 		<action name="staffAction_*" class="staffAction" method="{1}">

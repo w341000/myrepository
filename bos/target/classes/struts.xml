@@ -72,5 +72,18 @@
 		<action name="roleAction_*" class="roleAction" method="{1}">
 			<result name="list">/WEB-INF/pages/admin/role.jsp</result>
 		</action>
+		<!-- 流程定义管理 -->
+		<action name="processDefinitionAction_*" class="processDefinitionAction" method="{1}">
+			<result name="list">/WEB-INF/pages/workflow/processdefinition_list.jsp</result>
+			<result name="tolist" type="redirectAction">processDefinitionAction_list</result>
+			 <result name="showpng" type="stream"><!-- struts2提供的文件下载 -->
+				   <param name="contentType">image/png</param>
+				   <param name="inputName">pngStream</param>
+				   <!-- 
+				   <param name="contentDisposition">attachment;filename="document.pdf"</param>
+				   <param name="bufferSize">1024</param> -->
+			 </result>
+			
+		</action>
 	</package>
 </struts>

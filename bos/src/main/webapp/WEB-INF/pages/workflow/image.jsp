@@ -12,7 +12,7 @@
 	 src="processInstanceAction_viewImage?deploymentId=${deploymentId }&imageName=${imageName}">
 
 <!-- 2.根据当前活动的坐标，动态绘制DIV -->
-<div style="position: absolute;border:1px solid red;top:${y}px;left:${x}px;width:${width}px;height:${height}px;">
+<div style="position: absolute;border:1px solid red;top:${y-1}px;left:${x-1}px;width:${width}px;height:${height}px;">
 </div>
 </body>
 </html>

@@ -62,7 +62,10 @@
 			<result name="addUI">/WEB-INF/pages/qupai/noticebill_add.jsp</result>
 		</action>
 		<!-- 工作单管理 -->
-		<action name="workordermanageAction_*" class="workordermanageAction" method="{1}" />
+		<action name="workordermanageAction_*" class="workordermanageAction" method="{1}" >
+			<result name="list" >/WEB-INF/pages/workflow/startransfer.jsp</result>
+			<result name="tolist"  type="redirectAction">workordermanageAction_list</result>
+		</action>
 		
 		<!-- 权限管理 -->
 		<action name="functionAction_*" class="functionAction" method="{1}">
@@ -83,7 +86,15 @@
 				   <param name="contentDisposition">attachment;filename="document.pdf"</param>
 				   <param name="bufferSize">1024</param> -->
 			 </result>
-			
+		</action>
+		<!-- 流程定义管理 -->
+		<action name="processInstanceAction_*" class="processInstanceAction" method="{1}">
+			<result name="list">/WEB-INF/pages/workflow/processinstance.jsp</result>
+			<result name="showPng">/WEB-INF/pages/workflow/image.jsp</result>
+			<result name="viewImage" type="stream"><!-- struts2提供的文件下载 -->
+				   <param name="contentType">image/png</param>
+				   <param name="inputName">pngStream</param>
+			 </result>
 		</action>
 	</package>
 </struts>

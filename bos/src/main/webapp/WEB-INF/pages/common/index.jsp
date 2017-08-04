@@ -123,15 +123,22 @@
 	function onClick(event, treeId, treeNode, clickFlag) {
 		// 判断树菜单节点是否含有 page属性
 		if (treeNode.page!=undefined && treeNode.page!= "") {
+			var content = '<div style="width:100%;height:100%;overflow:hidden;">'
+					+ '<iframe src="'
+					+ treeNode.page
+					+ '" scrolling="auto" style="width:100%;height:100%;border:0;" ></iframe></div>';
 			if ($("#tabs").tabs('exists', treeNode.name)) {// 判断tab是否存在
 				$('#tabs').tabs('select', treeNode.name); // 切换tab
+				var tab = $('#tabs').tabs('getSelected'); 
+				$('#tabs').tabs('update', {
+				    tab: tab,
+				    options: {
+				        title: treeNode.name,
+				        content: content
+				    }
+				});
 			} else {
 				// 开启一个新的tab页面
-				var content = '<div style="width:100%;height:100%;overflow:hidden;">'
-						+ '<iframe src="'
-						+ treeNode.page
-						+ '" scrolling="auto" style="width:100%;height:100%;border:0;" ></iframe></div>';
-
 				$('#tabs').tabs('add', {
 					title : treeNode.name,
 					content : content,

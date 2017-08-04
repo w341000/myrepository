@@ -15,9 +15,6 @@ import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.criterion.DetachedCriteria;
-
-import bos.domain.Region;
-import bos.domain.Staff;
 import bos.utils.PageBean;
 
 import com.opensymphony.xwork2.ActionSupport;

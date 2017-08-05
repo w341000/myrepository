@@ -96,5 +96,13 @@
 				   <param name="inputName">pngStream</param>
 			 </result>
 		</action>
+		<!-- 任务操作管理 -->
+		<action name="taskAction_*" class="taskAction" method="{1}">
+			<result name="grouptasklist">/WEB-INF/pages/workflow/grouptask.jsp</result>
+			<result name="togrouptasklist" type="redirectAction">taskAction_findGroupTask</result>
+			<result name="personaltasklist">/WEB-INF/pages/workflow/personaltask.jsp</result>
+			<result name="check">/WEB-INF/pages/workflow/check.jsp</result>
+			<result name="topersonaltasklist" type="redirectAction">taskAction_findPersonalTask</result>
+		</action>
 	</package>
 </struts>

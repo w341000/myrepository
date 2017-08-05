@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h3>审核工作单</h3>
-	${map }
+	${workordermanage }
 	<s:form namespace="/" action="taskAction_checkWorkOrderManage">
 		<s:hidden name="taskId"></s:hidden>
 		 审核结果：<select name="check">

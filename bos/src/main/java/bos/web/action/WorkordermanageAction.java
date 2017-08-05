@@ -45,7 +45,10 @@ public class WorkordermanageAction extends BaseAction<Workordermanage> {
 	 * @throws IOException
 	 */
 	public String start() throws IOException{
-		//启动流程实例并设置流程变量,修改工作单中的start为1
+		
+		String id = model.getId();//工作单id
+		workordermanageService.start(id);//启动流程实例
+		
 		return "tolist";
 	}
 

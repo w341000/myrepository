@@ -49,7 +49,7 @@ public class StaffServiceImpl implements IStaffService {
 	@Override
 	public List<Staff> findListNotDelete() {
 		DetachedCriteria detachedCriteria=DetachedCriteria.forClass(Staff.class);
-		detachedCriteria.add(Restrictions.eq("deltag", "1"));
+		detachedCriteria.add(Restrictions.eq("deltag", "0"));
 		return staffDao.findByCriteria(detachedCriteria) ;
 	}
 

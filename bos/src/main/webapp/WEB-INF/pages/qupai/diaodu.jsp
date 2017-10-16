@@ -30,13 +30,22 @@
 	$(function() {
 		$("#grid").datagrid({
 			singleSelect : true,
+			pageList: [30,50,100],
+			pagination : true,
 			toolbar : [ {
 				id : 'diaodu',
 				text : '人工调度',
 				iconCls : 'icon-edit',
 				handler : function() {
 					// 弹出窗口
-					$("#diaoduWindow").window('open');
+					var row=$("#grid").datagrid("getSelected");
+					if(row!=null){
+						$("#noticebillId").val(row.id);
+						$("#noticebillIdView").html(row.id);
+						$("#diaoduWindow").window('open');
+					}else{
+						$.messager.alert("提示信息","请选择一项纪录","info");
+					}
 				}
 			} ],
 			columns : [ [ {
@@ -62,17 +71,14 @@
 			}, {
 				field : 'pickdate',
 				title : '取件日期',
-				width : 100,
-				formatter : function(data, row, index) {
-					return data.replace("T", " ");
-				}
+				width : 100
 			} ] ],
-			url : '${pageContext.request.contextPath}/noticebill_findnoassociations.action'
+			url : '${pageContext.request.contextPath}/noticebillAction_findnoassociations.action'
 		});
 
 		// 点击保存按钮，为通知单 进行分单 --- 生成工单
 		$("#save").click(function() {
-
+			alert("保存功能");
 		});
 	});
 </script>
@@ -106,7 +112,7 @@
 						<td>选择取派员</td>
 						<td><input class="easyui-combobox" required="true"
 							name="staff.id"
-							data-options="valueField:'id',textField:'name',url:'${pageContext.request.contextPath }/staff_ajaxlist.action'" />
+							data-options="valueField:'id',textField:'name',url:'${pageContext.request.contextPath }/staffAction_listajax.action'" />
 						</td>
 					</tr>
 				</table>

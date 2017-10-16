@@ -38,6 +38,14 @@
 			}
 		});
 	});
+	$.extend($.fn.validatebox.defaults.rules, {    
+    telLength: {    
+        validator: function(value, param){    
+            return value.length == 11;    
+        },    
+        message: '请输入11位的电话号码'   
+    }    
+}); 
 </script>	
 </head>
 <body class="easyui-layout" style="visibility:hidden;">
@@ -75,7 +83,7 @@
 				<tr>
 					<td>联系电话</td>
 					<td colspan="3">
-						<input type="text" name="telephone" id="telephone" class="easyui-validatebox" required="true" />
+						<input type="text" name="telephone" id="telephone" class="easyui-numberbox" required="true"  validType="telLength"/>
 					</td>
 				</tr>
 	           	<tr><td>备注:</td><td colspan="3"><textarea style="width:80%"></textarea></td></tr>

@@ -1,13 +1,12 @@
 package bos.web.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
-import cn.itcast.crm.domain.Customer;
 
 import bos.crm.CustomerService;
 import bos.domain.Noticebill;
@@ -15,6 +14,7 @@ import bos.domain.User;
 import bos.service.INoticebillService;
 import bos.utils.BOSContext;
 import bos.web.action.base.BaseAction;
+import cn.itcast.crm.domain.Customer;
 @Controller @Scope("prototype")
 public class NoticebillAction extends BaseAction<Noticebill> {
 	@Resource
@@ -44,5 +44,17 @@ public class NoticebillAction extends BaseAction<Noticebill> {
 		
 		return "addUI";
 	}
-
+	/**
+	 * 查询出未关联(需要手动分单的)通知单
+	 * @return
+	 * @throws IOException 
+	 */
+	public String findnoassociations() throws IOException{
+		noticebillService.findnoassociations(pageBean);
+		String[] excludes=new String[]{"pageSize","currentPage","detachedCriteria","user","staff","workbills"};
+		this.WritePageBean2Json(excludes);
+		
+		return NONE;
+	}
+	
 }

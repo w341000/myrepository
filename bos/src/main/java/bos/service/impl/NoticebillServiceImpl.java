@@ -1,9 +1,12 @@
 package bos.service.impl;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +20,7 @@ import bos.domain.Staff;
 import bos.domain.User;
 import bos.domain.Workbill;
 import bos.service.INoticebillService;
+import bos.utils.PageBean;
 @Service @Transactional
 public class NoticebillServiceImpl implements INoticebillService {
 	@Resource
@@ -58,6 +62,13 @@ public class NoticebillServiceImpl implements INoticebillService {
 			//没有查询到定区id,转为人工分单
 			model.setOrdertype("人工");
 		}
+	}
+
+	@Override
+	public void findnoassociations(PageBean pageBean) {
+		DetachedCriteria criteria = pageBean.getDetachedCriteria();
+		criteria.add(Restrictions.eq("ordertype", "人工"));
+		noticebillDao.pageQuery(pageBean);
 	}
 
 }

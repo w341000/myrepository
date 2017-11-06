@@ -39,7 +39,7 @@ public class NoticebillServiceImpl implements INoticebillService {
 		String pickaddress = model.getPickaddress();
 		//根据取件地址查询定区id --从crm查询
 		String dId = proxy.findDecidedzoneIdByPickaddress(pickaddress);
-		if(dId!=null){
+		if(dId!=null && decidedzoneDao.findById(dId)!=null){
 			//查询到定区id,进行自动分单
 			Decidedzone decidedzone = decidedzoneDao.findById(dId);
 			Staff staff = decidedzone.getStaff();

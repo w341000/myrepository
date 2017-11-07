@@ -192,8 +192,6 @@
 	<div data-options="region:'north',border:false"
 		style="height:80px;padding:10px;background:url('./images/header_bg.png') no-repeat right;">
 		<div>
-			<img src="${pageContext.request.contextPath }/images/logo.png"
-				border="0">
 		</div>
 		<div id="sessionInfoDiv"
 			style="position: absolute;right: 5px;top:10px;">
@@ -246,9 +244,7 @@
 			<tbody>
 				<tr>
 					<td style="width: 300px;">
-						<div style="color: #999; font-size: 8pt;">
-							Powered by <a href="javascript:void">Mr.Wu</a>
-						</div>
+						
 					</td>
 					<td style="width: *;" class="co1"><span id="online"
 						style="background: url(${pageContext.request.contextPath }/images/online.png) no-repeat left;padding-left:18px;margin-left:3px;font-size:8pt;color:#005590;">在线人数:1</span>

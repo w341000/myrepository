@@ -15,7 +15,6 @@
 	
 	<!-- 加载jdbc属性文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties"/>
-						
 	<!-- 数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${driverClass}"/>
@@ -61,7 +60,7 @@
 		<property name="serviceUrl" value="http://localhost:8080/crm/remoting/customer"/> <!-- 服务访问路径 -->
 	</bean>
 	<!-- 配置一个shiro工厂bean用于创建shiro框架用到的过滤器 -->
-	<bean id="shiroFilter" class="bos.shiro.filter.ShiroPermissionFilterFactoryBean">
+	<bean id="shiroFilter" class="bos.shiro.filter.ShiroPermissionFilterFactoryBean" lazy-init="true" >
 		<property name="securityManager" ref="securityManager" /><!-- 注入安全管理器 -->
 		<property name="loginUrl" value="/login.jsp"/><!-- 注入当前系统的登录页面 -->
 		<property name="successUrl" value="/index.jsp" /><!-- 注入登录成功页面 -->
